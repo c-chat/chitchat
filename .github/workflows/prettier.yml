@@ -5,6 +5,8 @@ on:
   push:
     branches: [main, frontend-template, backend-template, CI-workflows]
 
+permissions: write-all
+
 jobs:
   prettier:
     runs-on: ubuntu-latest
