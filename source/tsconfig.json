@@ -30,6 +30,6 @@
     "strictTemplates": true
   },
   "include": [
-    "**/*.ts"
+    "src/**/*.ts"
   ]
 }
