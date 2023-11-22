@@ -1,1 +1,6 @@
-<p>button works!</p>
+<p>My Button</p>
+<button (click)="makeRequest()">Clivk to make GET request</button>
+<div>
+    <p>Status: {{ status }}</p>
+    <p>Response: {{ response | json }}</p>
+</div>
