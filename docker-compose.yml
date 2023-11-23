@@ -2,6 +2,9 @@ version: '1'
 services:
   source:
     image: chitchat_source:1.0.0
+    volumes:
+      - ./source:/app
+      - /app/node_modules
     ports:
       - "3000:4200"
   server:
