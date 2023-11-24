@@ -1,2 +1,4 @@
-
-.server.env
+.env
+/venv/
+/backend/__pycache__/
+*.sqlite3
