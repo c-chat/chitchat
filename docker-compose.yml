@@ -9,6 +9,8 @@ services:
       - "3000:4200"
   server:
     image: chitchat_server:1.0.0
+    volumes:
+      - ./server:/app
     ports:
       - "8000:8000"
     env_file:
