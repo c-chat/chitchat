@@ -4,9 +4,9 @@ p::before{
 }
 
 p{
-    font-family: 'Montserrat', sans-serif;
+    font-family: Montserrat, sans-serif;
     font-size: 16px;
-    font-weight: Medium;
+    font-weight: medium;
 }
 
 form{
@@ -14,7 +14,7 @@ form{
     flex-direction: column;
 
     label{
-        font-family: 'Montserrat', sans-serif;
+        font-family: Montserrat, sans-serif;
         font-weight: light;
         font-size: 12px;
         margin-bottom: 7px;
@@ -22,18 +22,17 @@ form{
     }
 
     input{
-        font-family: 'Montserrat', sans-serif;
+        font-family: Montserrat, sans-serif;
         width: 98%;
         height: 31px;
         border: 1px solid #B2CCFF;
         border-radius: 5px;
         margin-top: 7px;
         margin-bottom: 7px;
-        margin: auto;
     }
 
     .sign-btn{
-        font-family: 'Montserrat', sans-serif;
+        font-family: Montserrat, sans-serif;
         font-weight: bold;
         font-size: 15px;
         width: 105px;
