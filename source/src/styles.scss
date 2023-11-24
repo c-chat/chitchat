@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
 @font-face {
-    font-family: Montserrat;
-    src: url('https://fonts.cdnfonts.com/css/montserrat');
+    font-family: 'Montserrat';
+    src: url('/source/src/assets/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
 }
