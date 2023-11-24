@@ -31,6 +31,7 @@ yarn-error.log
 .editorconfig
 
 # Miscellaneous
+/.angular
 /.angular/cache
 .sass-cache/
 /connect.lock
@@ -42,3 +43,4 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+src/environments
