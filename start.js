@@ -66,14 +66,14 @@ async function setupContainers () {
 function writeFile (content, file) {
   if (file.type === "source") {
     try {
-      execSync("cd ./source/src/environment")
+      execSync("cd ./source/src/environments")
     } catch (error) {
-      execSync("mkdir ./source/src/environment")
+      execSync("mkdir ./source/src/environments")
     }
   }
 
   console.log(content);
-  const path = file.type === "source" ? `./source/src/environment/${file.fileName}` : `./server/.env`
+  const path = file.type === "source" ? `./source/src/environments/${file.fileName}` : `./server/.env`
   return new Promise((res, rej) => {
     fs.writeFileSync(path, content, () => {})
     res()
@@ -90,7 +90,8 @@ async function fetchFileInfo (file, pat) {
       if (res.ok) {
         return res.text()
       }
-      throw Error('something went wrong. script was unable to fetch requested resources. env file was not updated')
+      // console.log(res.status, res.statusText);
+      throw Error(`${res.status} ${res.statusText} something went wrong. script was unable to fetch requested resources. env file was not updated`)
     })
     .then(async(content) => {
       await writeFile(content, file)
@@ -99,7 +100,7 @@ async function fetchFileInfo (file, pat) {
 }
 
 async function main (pat) {
-  const FILES = [{type:'source',fileName:'environment.development.ts'}, {type:'server',fileName:'.server.env'}]
+  const FILES = [{type:'source',fileName:'environment.ts'},{type:'source',fileName:'environment.development.ts'}, {type:'server',fileName:'.server.env'}]
   for (const file of FILES) {
     await fetchFileInfo(file, pat)
   }
