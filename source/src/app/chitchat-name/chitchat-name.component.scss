@@ -16,7 +16,7 @@
     }
 }
 
-@media  screen and (min-width: 744px) {
+@media  screen and (width >= 744px) {
     h1{
         padding-bottom: 21px;
         font-weight: 700;
@@ -27,4 +27,26 @@
         font-weight: 700px;
         font-size: 32px;
     }
+}
+
+@media screen and (width >= 1280px){
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 600px;
+        margin: auto;
+
+        h1{
+            font-weight: 700;
+            font-size: 64px;
+        }
+
+        h4{
+            font-weight: 700;
+            font-size: 32px;
+        }
+    }
+    
 }
