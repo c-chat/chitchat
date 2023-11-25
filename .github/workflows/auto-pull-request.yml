@@ -1,3 +1,4 @@
+---
 name: update branches
 
 on:
@@ -19,24 +20,34 @@ jobs:
       uses: peter-evans/create-pull-request@v3
       with:
         base: frontend-template
-        head: main
+        branch: main
         commit-message: "Automated pull request update from main to frontend-template"
+        labels: "upstream changes"
+        reviewers: "alivarastepour"
 
     - name: Create pull request for branch backend-template
       uses: peter-evans/create-pull-request@v3
       with:
         base: backend-template
-        head: main
+        branch: main
         commit-message: "Automated pull request update from main to backend-template"
+        labels: "upstream changes"
+        reviewers: "alivarastepour"
+
     - name: Create pull request for branch CI-workflows
-      uses: peter-evens/create-pull-request@v3
+      uses: peter-evans/create-pull-request@v3
       with:
         base: CI-workflows
-        head: main
+        branch: main
         commit-message: "Automated pull request update from main to CI-workflows"
+        labels: "upstream changes"
+        reviewers: "alivarastepour"
+
     - name: Create pull request for branch env-config
       uses: peter-evans/create-pull-request@v3
       with:
         base: env-config
-        head: main
+        branch: main
         commit-message: "Automated pull request update from main to env-config"
+        labels: "upstream changes"
+        reviewers: "alivarastepour"
