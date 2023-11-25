@@ -1,13 +1,15 @@
-<p>Sign up for a new account</p>
-<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-    <!-- username -->
-    <label>Username</label>
-    <input type="text" name="username" formControlName="username" placeholder="shahrzad">
-    <!-- password -->
-    <label>Password</label>
-    <input type="password" name="password" formControlName="password" placeholder="123456">
-    <!-- repeat password -->
-    <label>Repeat password</label>
-    <input type="password" name="confirmPassword" formControlName="confirmPassword">
-    <button class="sign-btn">Sign up</button>
-</form>
+<div class="container">
+    <p>Sign up for a new account</p>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <!-- username -->
+        <label>Username</label>
+        <input type="text" name="username" formControlName="username" placeholder="shahrzad">
+        <!-- password -->
+        <label>Password</label>
+        <input type="password" name="password" formControlName="password" placeholder="123456">
+        <!-- repeat password -->
+        <label>Repeat password</label>
+        <input type="password" name="confirmPassword" formControlName="confirmPassword">
+        <button class="sign-btn">Sign up</button>
+    </form>
+</div>

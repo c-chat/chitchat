@@ -73,12 +73,28 @@ form {
 }
 
 @media screen and (width >= 1280px){
-    p{
-        background-color: rebeccapurple;
-    }
+    .container{
+        width: 700px;
+        margin: auto;
+
+        p{
+            font-weight: 500;font-size: 32px;
+        }
     
-    form{
-        background-color: aqua;
+        form{
+            label{
+                font-weight: 300;
+                font-size: 24px;
+            }
+
+            .sign-btn{
+                width: 200px;
+                height: 60px;
+                margin-left: 500px;
+            }
+        }
+
     }
+   
     
 }
