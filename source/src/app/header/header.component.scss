@@ -2,23 +2,60 @@
     display: flex;
     justify-content: space-between;
 
-    .hamburger-menu {
+    .right{
         display: flex;
-    }
 
-    .language {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        margin-right: 10px;
-
-        #en-svg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1;
+        .hamburger-menu {
+            display: flex;
+            cursor: pointer;
+        }
+    
+        .language {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-right: 10px;
+    
+            #en-svg {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 1;
+            }
         }
     }
+
+    
+}
+
+@media screen and (min-width: 744px) {
+
+    .right{
+
+        .hamburger-menu{
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+        }
+    
+        .language{
+            margin-bottom: 40px;
+            
+            #rect-svg{
+                width: 50px;
+                height: 50px;
+            }
+    
+            #en-svg{
+                font-weight: 600;
+                font-size: 24px;
+            }
+        }
+
+    }
+    
+    
 }
