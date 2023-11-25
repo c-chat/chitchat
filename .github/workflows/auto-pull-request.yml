@@ -1,0 +1,53 @@
+---
+name: update branches
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-branches:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout main branch
+      uses: actions/checkout@v2
+      with:
+        ref: main
+
+    - name: Create pull request for branch frontend-template
+      uses: peter-evans/create-pull-request@v3
+      with:
+        base: frontend-template
+        branch: main
+        commit-message: "Automated pull request update from main to frontend-template"
+        labels: "upstream changes"
+        reviewers: "alivarastepour"
+
+    - name: Create pull request for branch backend-template
+      uses: peter-evans/create-pull-request@v3
+      with:
+        base: backend-template
+        branch: main
+        commit-message: "Automated pull request update from main to backend-template"
+        labels: "upstream changes"
+        reviewers: "alivarastepour"
+
+    - name: Create pull request for branch CI-workflows
+      uses: peter-evans/create-pull-request@v3
+      with:
+        base: CI-workflows
+        branch: main
+        commit-message: "Automated pull request update from main to CI-workflows"
+        labels: "upstream changes"
+        reviewers: "alivarastepour"
+
+    - name: Create pull request for branch env-config
+      uses: peter-evans/create-pull-request@v3
+      with:
+        base: env-config
+        branch: main
+        commit-message: "Automated pull request update from main to env-config"
+        labels: "upstream changes"
+        reviewers: "alivarastepour"
