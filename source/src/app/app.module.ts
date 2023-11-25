@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ChitchatNameComponent } from './chitchat-name/chitchat-name.component';
 import { SignupSectionComponent } from './signup-section/signup-section.component';
+import { SignupPageComponent } from './signup-page/signup-page.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { SignupSectionComponent } from './signup-section/signup-section.componen
     HeaderComponent,
     ChitchatNameComponent,
     SignupSectionComponent,
+    SignupPageComponent,
   ],
   imports: [
     BrowserModule,
