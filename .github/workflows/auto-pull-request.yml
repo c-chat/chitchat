@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         ref: main
-        token: ${{ secrets.PAT }}
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Create pull request for branch frontend-template
       uses: peter-evans/create-pull-request@v3
@@ -25,7 +25,7 @@ jobs:
         commit-message: "Automated pull request update from main to frontend-template"
         labels: "upstream changes"
         reviewers: "alivarastepour"
-        token: ${{ secrets.PAT }}
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Create pull request for branch backend-template
       uses: peter-evans/create-pull-request@v3
@@ -35,7 +35,7 @@ jobs:
         commit-message: "Automated pull request update from main to backend-template"
         labels: "upstream changes"
         reviewers: "alivarastepour"
-        token: ${{ secrets.PAT }}
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Create pull request for branch CI-workflows
       uses: peter-evans/create-pull-request@v3
@@ -45,7 +45,7 @@ jobs:
         commit-message: "Automated pull request update from main to CI-workflows"
         labels: "upstream changes"
         reviewers: "alivarastepour"
-        token: ${{ secrets.PAT }}
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Create pull request for branch env-config
       uses: peter-evans/create-pull-request@v3
@@ -55,4 +55,4 @@ jobs:
         commit-message: "Automated pull request update from main to env-config"
         labels: "upstream changes"
         reviewers: "alivarastepour"
-        token: ${{ secrets.PAT }}
+        token: ${{ secrets.GITHUB_TOKEN }}
