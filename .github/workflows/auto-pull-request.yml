@@ -2,7 +2,7 @@
 name: update branches
 
 on:
-  merge_group: 
+  push: 
     branches:
       - main
 
