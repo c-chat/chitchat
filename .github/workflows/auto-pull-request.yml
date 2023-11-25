@@ -7,16 +7,16 @@ on:
       - main
 
 jobs:
-  update-branches:
+  update-branch-1:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout main branch
+    - name: Checkout frontend-template branch
       uses: actions/checkout@v2
       with:
-        ref: main
+        ref: frontend-template
         token: ${{ secrets.PAT }}
-
+        
     - name: Create pull request for branch frontend-template
       uses: peter-evans/create-pull-request@v3
       with:
@@ -27,6 +27,14 @@ jobs:
         reviewers: "alivarastepour"
         token: ${{ secrets.PAT }}
 
+  update-branch-2:      
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout backend-template branch
+      uses: actions/checkout@v2
+      with:
+        ref: backend-template
+        token: ${{ secrets.PAT }}
     - name: Create pull request for branch backend-template
       uses: peter-evans/create-pull-request@v3
       with:
@@ -35,6 +43,16 @@ jobs:
         commit-message: "Automated pull request update from main to backend-template"
         labels: "upstream changes"
         reviewers: "alivarastepour"
+        token: ${{ secrets.PAT }}
+
+
+  update-branch-3:      
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout CI-workflows branch
+      uses: actions/checkout@v2
+      with:
+        ref: CI-workflows
         token: ${{ secrets.PAT }}
 
     - name: Create pull request for branch CI-workflows
@@ -47,6 +65,14 @@ jobs:
         reviewers: "alivarastepour"
         token: ${{ secrets.PAT }}
 
+  update-branch-4:      
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout env-config branch
+      uses: actions/checkout@v2
+      with:
+        ref: env-config
+        token: ${{ secrets.PAT }}
     - name: Create pull request for branch env-config
       uses: peter-evans/create-pull-request@v3
       with:
