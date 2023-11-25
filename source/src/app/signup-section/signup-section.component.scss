@@ -71,3 +71,13 @@ form {
     }
 
 }
+
+@media screen and (width >= 1280px){
+    p{
+        background-color: rebeccapurple;
+    }
+    form{
+        background-color: aqua;
+    }
+    
+}
