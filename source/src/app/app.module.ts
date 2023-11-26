@@ -10,6 +10,7 @@ import { ChitchatNameComponent } from './chitchat-name/chitchat-name.component';
 import { SignupSectionComponent } from './signup-section/signup-section.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { SigninPageComponent } from './signin-page/signin-page.component';
+import { SigninSectionComponent } from './signin-section/signin-section.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { SigninPageComponent } from './signin-page/signin-page.component';
     SignupSectionComponent,
     SignupPageComponent,
     SigninPageComponent,
+    SigninSectionComponent,
   ],
   imports: [
     BrowserModule,
