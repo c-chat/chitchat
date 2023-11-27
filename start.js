@@ -63,7 +63,7 @@ async function setupContainers () {
 
 function writeFile (content, file) {
   if (file.type === 'source') {
-    const prefix = process.platform === 'win32' ? "powershell.exe " : "" 
+    const prefix = process.platform === 'win32' ? 'powershell.exe ' : ''
     try {
       execSync('cd ./source/src/environments')
     } catch (error) {
