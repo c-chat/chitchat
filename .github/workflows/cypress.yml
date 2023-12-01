@@ -1,0 +1,34 @@
+---
+name: E2E tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.10.0'
+
+      - name: start app
+        run: node start.js
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Wait for Services to Start
+        run: sleep 30
+
+      - name: Run E2E Tests
+        run: npx cypress run --browser chrome
