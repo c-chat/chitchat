@@ -24,8 +24,6 @@ jobs:
           S: ${{ secrets.PAT }}
         run: node start.js "$S" &
 
-      - name: cd to source
-        run: cd ./source
-
       - name: Run E2E Tests
+        working-directory: ./source
         run: npx cypress run --browser chrome
