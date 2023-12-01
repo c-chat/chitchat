@@ -25,4 +25,5 @@ jobs:
         run: node start.js "$S" &
 
       - name: Run E2E Tests
+        run: docker ps
         run: npx cypress run --browser chrome
