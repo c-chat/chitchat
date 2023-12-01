@@ -20,7 +20,9 @@ jobs:
           node-version: '18.10.0'
 
       - name: start app
-        run: node start.js
+        env:
+          - S: ${{ secrets.PAT }}
+        run: node start.js "$S"
 
   test:
     needs: build
