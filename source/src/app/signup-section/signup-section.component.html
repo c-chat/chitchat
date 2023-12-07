@@ -7,6 +7,7 @@
         <div *ngIf="signupForm.get('username')!.invalid && (signupForm.get('username')!.dirty || signupForm.get('username')!.touched)">
             <div class="error" *ngIf="signupForm.get('username')!.errors?.['required']">Username is required.</div>
             <div class="error" *ngIf="signupForm.get('username')!.errors?.['noWhitespace']">Username cannot contain whitespace.</div>
+            <div class="error" *ngIf="false">This username is already taken</div>
         </div>
         <!-- password -->
         <label>Password</label>
