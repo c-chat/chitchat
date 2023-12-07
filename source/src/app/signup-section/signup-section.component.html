@@ -10,6 +10,6 @@
         <!-- repeat password -->
         <label>Repeat password</label>
         <input type="password" name="confirmPassword" formControlName="confirmPassword">
-        <button class="sign-btn">Sign up</button>
+        <button [disabled]="!signupForm.valid" class="sign-btn">Sign up</button>
     </form>
 </div>

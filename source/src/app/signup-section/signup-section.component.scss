@@ -46,6 +46,11 @@ form {
         margin-left: 250px;
         float: right;
     }
+
+    .sign-btn:disabled{
+        cursor: not-allowed;
+        background-color: #c9d9f8;
+    }
 }
 
 @media screen and (width >= 744px) {
