@@ -8,12 +8,16 @@ import { FormBuilder, FormGroup, AbstractControl, ValidationErrors, Validators, 
   styleUrls: ['./signup-section.component.scss']
 })
 export class SignupSectionComponent {
-  constructor (private fb: FormBuilder){}
-  signupForm = this.fb.group({
-    username: ['', [Validators.required, this.patternValidator(/^\S*$/, { noWhitespace: true })]],
-    password: ['', [Validators.required, Validators.minLength(8), this.patternValidator(/\d/, { hasNumber: true }), this.patternValidator(/[A-Z]/, { hasCapitalCase: true }), this.patternValidator(/[a-z]/, { hasSmallCase: true }), this.patternValidator(/[.]+/, { hasSpecialCharacters: true }), this.patternValidator(/^\S*$/, { noWhitespace: true })]],
-    confirmPassword: ['', Validators.required]
-  })
+  signupForm: FormGroup;
+  constructor (private fb: FormBuilder){
+    this.signupForm = this.fb.group({
+      username: ['', [Validators.required, this.patternValidator(/^\S*$/, { noWhitespace: true })]],
+      password: ['', [Validators.required, Validators.minLength(8), this.patternValidator(/\d/, { hasNumber: true }), this.patternValidator(/[A-Z]/, { hasCapitalCase: true }), this.patternValidator(/[a-z]/, { hasSmallCase: true }), this.patternValidator(/[.]+/, { hasSpecialCharacters: true }), this.patternValidator(/^\S*$/, { noWhitespace: true })]],
+      confirmPassword: ['', Validators.required]
+    })
+    this.signupForm.get('confirmPassword')?.setValidators(this.validatePasswordMatch.bind(this));
+  }
+  
 
   patternValidator(regex: RegExp, error: ValidationErrors | null): ValidatorFn {
     return (control: AbstractControl) => {
@@ -32,6 +36,17 @@ export class SignupSectionComponent {
         return error;
       }
     };
+  }
+
+  validatePasswordMatch(control: AbstractControl): ValidationErrors | null {
+    const passwordControl = this.signupForm.get('password');
+    const confirmPassword: string = control.value;
+  
+    if (passwordControl && confirmPassword !== passwordControl.value) {
+      return { NoPasswordMatch: true };
+    }
+    
+    return null;
   }
 
   onSubmit() {
