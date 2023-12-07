@@ -31,10 +31,57 @@ form {
         margin-bottom: 7px;
     }
 
-    .error{
-        color: red;
-    }
+    .error-container {
+        height: 20px; 
+        overflow: hidden; 
+        transition: height 0.3s ease; 
 
+        .error {
+            color: red;
+            height: 20px; 
+            opacity: 0; 
+            transition: opacity 0.3s ease; 
+          }
+
+        .error.show {
+            opacity: 1; 
+          }
+      }
+
+      .password-error-container {
+        height: 40px; 
+        overflow: hidden; 
+        transition: height 0.3s ease; 
+
+        .password-error {
+            color: red;
+            height: 20px; 
+            opacity: 0; 
+            transition: opacity 0.3s ease; 
+          }
+          
+        .password-error.show {
+            opacity: 1; 
+          }
+      }
+
+      .confirm-password-error-container {
+        height: 20px; 
+        overflow: hidden; 
+        transition: height 0.3s ease; 
+
+        .confirm-password-error {
+            color: red;
+            height: 20px; 
+            opacity: 0; 
+            transition: opacity 0.3s ease; 
+          }
+          
+          .confirm-password-error.show {
+            opacity: 1; 
+          }
+      }
+      
     .sign-btn {
         font-family: Montserrat, sans-serif;
         font-weight: bold;
@@ -51,13 +98,13 @@ form {
         float: right;
     }
 
-    .sign-btn:disabled{
+    .sign-btn:disabled {
         cursor: not-allowed;
         background-color: #c9d9f8;
     }
 }
 
-@media screen and (width >= 744px) {
+@media screen and (width >=744px) {
     p {
         font-weight: 500;
         font-size: 32px;
@@ -81,22 +128,23 @@ form {
 
 }
 
-@media screen and (width >= 1280px){
-    .container{
+@media screen and (width >=1280px) {
+    .container {
         width: 700px;
         margin: auto;
 
-        p{
-            font-weight: 500;font-size: 32px;
+        p {
+            font-weight: 500;
+            font-size: 32px;
         }
-    
-        form{
-            label{
+
+        form {
+            label {
                 font-weight: 300;
                 font-size: 24px;
             }
 
-            .sign-btn{
+            .sign-btn {
                 width: 200px;
                 height: 60px;
                 margin-left: 500px;
@@ -104,6 +152,6 @@ form {
         }
 
     }
-   
-    
+
+
 }

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
+import { EncryptionService } from '../encryption.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-signup-section',
@@ -9,8 +12,9 @@ import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/fo
 export class SignupSectionComponent {
   signupForm: FormGroup;
   passwordBlurred: boolean = false;
+  usernameBlurred: boolean = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private encryptionService: EncryptionService, private http: HttpClient) {
     this.signupForm = this.fb.group({
       username: ['', [Validators.required, this.patternValidator(/^\S*$/, { noWhitespace: true })]],
       password: [
@@ -28,6 +32,16 @@ export class SignupSectionComponent {
       confirmPassword: ['', Validators.required]
     });
   }
+
+  validateUsername() {
+    this.usernameBlurred = true;
+    const usernameControl = this.signupForm.get('username');
+    if (usernameControl) {
+      usernameControl.markAsTouched();
+      usernameControl.updateValueAndValidity();
+    }
+  }
+  
 
   patternValidator(regex: RegExp, error: any) {
     return (control: AbstractControl) => {
@@ -52,26 +66,8 @@ export class SignupSectionComponent {
     let errorMessage = '';
 
     if (errors) {
-      if (errors['required']) {
-        errorMessage += 'Password is required. ';
-      }
-      if (errors['minlength']) {
-        errorMessage += 'Password must be at least 8 characters long. ';
-      }
-      if (errors['hasNumber']) {
-        errorMessage += 'Password must contain at least one number. ';
-      }
-      if (errors['hasCapitalCase']) {
-        errorMessage += 'Password must contain at least one capital letter. ';
-      }
-      if (errors['hasSmallCase']) {
-        errorMessage += 'Password must contain at least one small letter. ';
-      }
-      if (errors['hasSpecialCharacters']) {
-        errorMessage += 'Password must contain a "." in it. ';
-      }
-      if (errors['noWhitespace']) {
-        errorMessage += 'Password cannot contain whitespace. ';
+      if (errors['required'] || errors['minlength'] || errors['hasNumber'] || errors['hasCapitalCase'] || errors['hasSmallCase'] || errors['hasSpecialCharacters'] || errors['noWhitespace']) {
+        errorMessage = 'Password is required and must have at least 8 characters, one capital letter, one small letter, one number and one "." ';
       }
     }
 
@@ -106,7 +102,17 @@ export class SignupSectionComponent {
     return passwordsMatch;
   }
   
-  onSubmit() {
+  onSubmit(username: string, password: string) {
     console.log(this.signupForm);
+    const encryptedCredentials = this.encryptionService.encryptCredentials(username, password);
+
+    this.http.post(`${environment.apiUrl}/login`, { credentials: encryptedCredentials }).subscribe(
+      (response) => {
+        
+      },
+      (error) => {
+      
+      }
+    );
   }
 }
