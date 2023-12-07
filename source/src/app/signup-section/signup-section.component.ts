@@ -10,8 +10,8 @@ import { FormBuilder, FormGroup, AbstractControl, ValidationErrors, Validators, 
 export class SignupSectionComponent {
   constructor (private fb: FormBuilder){}
   signupForm = this.fb.group({
-    username: ['', Validators.required],
-    password: ['', [Validators.required, Validators.minLength(8), this.patternValidator(/\d/, { hasNumber: true }), this.patternValidator(/[A-Z]/, { hasCapitalCase: true }), this.patternValidator(/[a-z]/, { hasSmallCase: true }), this.patternValidator(/[.]+/, { hasSpecialCharacters: true })]],
+    username: ['', [Validators.required, this.patternValidator(/^\S*$/, { noWhitespace: true })]],
+    password: ['', [Validators.required, Validators.minLength(8), this.patternValidator(/\d/, { hasNumber: true }), this.patternValidator(/[A-Z]/, { hasCapitalCase: true }), this.patternValidator(/[a-z]/, { hasSmallCase: true }), this.patternValidator(/[.]+/, { hasSpecialCharacters: true }), this.patternValidator(/^\S*$/, { noWhitespace: true })]],
     confirmPassword: ['', Validators.required]
   })
 
@@ -23,8 +23,9 @@ export class SignupSectionComponent {
 
       // test the value of the control against the regexp supplied
       const valid = regex.test(control.value);
-
-      if (valid) {
+      // check for whitespace
+      const hasWhitespace = /\s/.test(control.value);
+      if (valid && !hasWhitespace) {
         return null;
       }
       else {

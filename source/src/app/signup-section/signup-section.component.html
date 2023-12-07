@@ -4,10 +4,15 @@
         <!-- username -->
         <label>Username</label>
         <input type="text" name="username" formControlName="username" placeholder="shahrzad">
+        <div *ngIf="signupForm.get('username')!.invalid && (signupForm.get('username')!.dirty || signupForm.get('username')!.touched)">
+            <div class="error" *ngIf="signupForm.get('username')!.errors?.['required']">Username is required.</div>
+            <div class="error" *ngIf="signupForm.get('username')!.errors?.['noWhitespace']">Username cannot contain whitespace.</div>
+        </div>
         <!-- password -->
         <label>Password</label>
         <input type="password" name="password" formControlName="password" placeholder="123456">
         <div *ngIf="signupForm.get('password')!.invalid && (signupForm.get('password')!.dirty || signupForm.get('password')!.touched)">
+            <div class="error" *ngIf="signupForm.get('password')!.errors?.['noWhitespace']">Password cannot contain whitespace.</div>
             <div class="error" *ngIf="signupForm.get('password')!.errors?.['required']">Password is required.</div>
             <div class="error" *ngIf="signupForm.get('password')!.errors?.['minlength']">Password must be at least 8 characters long.</div>
             <div class="error" *ngIf="signupForm.get('password')!.errors?.['hasNumber']">Password must contain at least one number.</div>
