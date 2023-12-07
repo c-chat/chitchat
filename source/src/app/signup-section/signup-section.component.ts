@@ -89,9 +89,22 @@ export class SignupSectionComponent {
   checkPasswordsMatch() {
     const password = this.signupForm.get('password')?.value;
     const confirmPassword = this.signupForm.get('confirmPassword')?.value;
-    return password === confirmPassword;
+    const passwordsMatch = password === confirmPassword;
+  
+    if (!passwordsMatch) {
+      const confirmPassControl = this.signupForm.get('confirmPassword');
+      if (confirmPassControl) {
+        confirmPassControl.setErrors({ 'passwordMismatch': true });
+      }
+    } else {
+      const confirmPassControl = this.signupForm.get('confirmPassword');
+      if (confirmPassControl && confirmPassControl.errors?.['passwordMismatch']) {
+        confirmPassControl.setErrors(null);
+      }
+    }
+  
+    return passwordsMatch;
   }
-
   
   onSubmit() {
     console.log(this.signupForm);
