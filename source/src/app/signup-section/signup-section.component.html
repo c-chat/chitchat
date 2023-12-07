@@ -18,6 +18,9 @@
         <!-- repeat password -->
         <label>Repeat password</label>
         <input type="password" name="confirmPassword" formControlName="confirmPassword">
+        <div *ngIf="signupForm.get('confirmPassword')!.invalid && (signupForm.get('confirmPassword')!.dirty || signupForm.get('confirmPassword')!.touched)">
+            <div class="error" *ngIf="signupForm.get('confirmPassword')!.errors?.['required']">Please confirm your password.</div>
+        </div>
         <button [disabled]="!signupForm.valid" class="sign-btn">Sign up</button>
     </form>
 </div>
