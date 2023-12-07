@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ValidatorFn } from '@angular/forms';
-import { FormBuilder, FormGroup, AbstractControl, ValidationErrors, Validators, FormControl, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup-section',
@@ -9,48 +8,92 @@ import { FormBuilder, FormGroup, AbstractControl, ValidationErrors, Validators, 
 })
 export class SignupSectionComponent {
   signupForm: FormGroup;
-  constructor (private fb: FormBuilder){
+  passwordBlurred: boolean = false;
+
+  constructor(private fb: FormBuilder) {
     this.signupForm = this.fb.group({
       username: ['', [Validators.required, this.patternValidator(/^\S*$/, { noWhitespace: true })]],
-      password: ['', [Validators.required, Validators.minLength(8), this.patternValidator(/\d/, { hasNumber: true }), this.patternValidator(/[A-Z]/, { hasCapitalCase: true }), this.patternValidator(/[a-z]/, { hasSmallCase: true }), this.patternValidator(/[.]+/, { hasSpecialCharacters: true }), this.patternValidator(/^\S*$/, { noWhitespace: true })]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          this.patternValidator(/\d/, { hasNumber: true }),
+          this.patternValidator(/[A-Z]/, { hasCapitalCase: true }),
+          this.patternValidator(/[a-z]/, { hasSmallCase: true }),
+          this.patternValidator(/[.]+/, { hasSpecialCharacters: true }),
+          this.patternValidator(/^\S*$/, { noWhitespace: true })
+        ]
+      ],
       confirmPassword: ['', Validators.required]
-    })
-    this.signupForm.get('confirmPassword')?.setValidators(this.validatePasswordMatch.bind(this));
+    });
   }
-  
 
-  patternValidator(regex: RegExp, error: ValidationErrors | null): ValidatorFn {
+  patternValidator(regex: RegExp, error: any) {
     return (control: AbstractControl) => {
       if (!control.value) {
         return null;
       }
 
-      // test the value of the control against the regexp supplied
       const valid = regex.test(control.value);
-      // check for whitespace
       const hasWhitespace = /\s/.test(control.value);
+
       if (valid && !hasWhitespace) {
         return null;
-      }
-      else {
+      } else {
         return error;
       }
     };
   }
 
-  validatePasswordMatch(control: AbstractControl): ValidationErrors | null {
+  getPasswordErrors(): string {
     const passwordControl = this.signupForm.get('password');
-    const confirmPassword: string = control.value;
-  
-    if (passwordControl && confirmPassword !== passwordControl.value) {
-      return { NoPasswordMatch: true };
+    const errors = passwordControl?.errors;
+    let errorMessage = '';
+
+    if (errors) {
+      if (errors['required']) {
+        errorMessage += 'Password is required. ';
+      }
+      if (errors['minlength']) {
+        errorMessage += 'Password must be at least 8 characters long. ';
+      }
+      if (errors['hasNumber']) {
+        errorMessage += 'Password must contain at least one number. ';
+      }
+      if (errors['hasCapitalCase']) {
+        errorMessage += 'Password must contain at least one capital letter. ';
+      }
+      if (errors['hasSmallCase']) {
+        errorMessage += 'Password must contain at least one small letter. ';
+      }
+      if (errors['hasSpecialCharacters']) {
+        errorMessage += 'Password must contain a "." in it. ';
+      }
+      if (errors['noWhitespace']) {
+        errorMessage += 'Password cannot contain whitespace. ';
+      }
     }
-    
-    return null;
+
+    return errorMessage.trim();
   }
 
+  validatePassword() {
+    const passwordControl = this.signupForm.get('password');
+    if (passwordControl && this.passwordBlurred) {
+      passwordControl.markAsTouched();
+      passwordControl.updateValueAndValidity();
+    }
+  }
+
+  checkPasswordsMatch() {
+    const password = this.signupForm.get('password')?.value;
+    const confirmPassword = this.signupForm.get('confirmPassword')?.value;
+    return password === confirmPassword;
+  }
+
+  
   onSubmit() {
-    console.log(this.signupForm)
+    console.log(this.signupForm);
   }
-
 }
