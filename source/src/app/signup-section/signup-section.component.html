@@ -7,6 +7,14 @@
         <!-- password -->
         <label>Password</label>
         <input type="password" name="password" formControlName="password" placeholder="123456">
+        <div *ngIf="signupForm.get('password')!.invalid && (signupForm.get('password')!.dirty || signupForm.get('password')!.touched)">
+            <div class="error" *ngIf="signupForm.get('password')!.errors?.['required']">Password is required.</div>
+            <div class="error" *ngIf="signupForm.get('password')!.errors?.['minlength']">Password must be at least 8 characters long.</div>
+            <div class="error" *ngIf="signupForm.get('password')!.errors?.['hasNumber']">Password must contain at least one number.</div>
+            <div class="error" *ngIf="signupForm.get('password')!.errors?.['hasCapitalCase']">Password must contain at least one capital letter.</div>
+            <div class="error" *ngIf="signupForm.get('password')!.errors?.['hasSmallCase']">Password must contain at least one small letter.</div>
+            <div class="error" *ngIf="signupForm.get('password')!.errors?.['hasSpecialCharacters']">Password must contain a '.' in it.</div>
+        </div>
         <!-- repeat password -->
         <label>Repeat password</label>
         <input type="password" name="confirmPassword" formControlName="confirmPassword">
