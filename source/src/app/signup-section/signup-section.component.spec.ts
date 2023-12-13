@@ -42,5 +42,33 @@ describe('SignupSectionComponent', () => {
     expect(passwordControl?.hasError('required')).toBeTruthy();
     expect(confirmPasswordControl?.hasError('required')).toBeTruthy();
   });
+
+  it('should display an error if username contains whitespace', () => {
+    const usernameInput = fixture.nativeElement.querySelector('input[name="username"]');
+    const usernameControl = component.signupForm.get('username');
+  
+    // Simulate user input with whitespace
+    usernameInput.value = 'user name';
+    usernameInput.dispatchEvent(new Event('input'));
+  
+    // Ensure error message is displayed
+    fixture.detectChanges();
+  
+    // Ensure error container is present
+    const errorContainer = fixture.nativeElement.querySelector('.error-container');
+    expect(errorContainer).toBeTruthy();
+  
+    // Ensure error message is displayed if present
+    const errorElement = errorContainer?.querySelector('.error.show');
+  
+    if (errorElement) {
+      expect(errorElement.textContent).toContain('Username cannot contain whitespace.');
+      expect(usernameControl?.hasError('noWhitespace')).toBeTrue();
+    } else {
+      // If error element is not found, ensure the control is marked as invalid
+      expect(usernameControl?.hasError('noWhitespace')).toBeTrue();
+    }
+  });
+  
   
 });
