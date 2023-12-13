@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { SigninSectionComponent } from './signin-section.component';
 
 describe('SigninSectionComponent', () => {
@@ -8,7 +8,8 @@ describe('SigninSectionComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SigninSectionComponent]
+      declarations: [SigninSectionComponent],
+      imports: [ReactiveFormsModule]
     });
     fixture = TestBed.createComponent(SigninSectionComponent);
     component = fixture.componentInstance;
