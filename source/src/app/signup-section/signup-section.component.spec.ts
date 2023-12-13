@@ -139,4 +139,26 @@ describe('SignupSectionComponent', () => {
     }
   });
 
+  it('should require at 8 characters in password', () => {
+    const passwordControl = component.signupForm.get('password');
+  
+    // Simulate input without a small letter
+    passwordControl!.setValue('Aa.1');
+  
+    // Ensure the error message container is present
+    fixture.detectChanges();
+    const errorContainer = fixture.nativeElement.querySelector('.password-error-container');
+    expect(errorContainer).toBeTruthy();
+  
+    // Ensure the error message is displayed if present
+    const errorElement = errorContainer?.querySelector('.password-error.show');
+  
+    if (errorElement) {
+      expect(errorElement.textContent).toContain('Password is required and must have at least 8 characters, one capital letter, one small letter, one number, and one "."');
+      expect(passwordControl?.hasError('minlength')).toBeTrue();
+    } else {
+      // If error element is not found, ensure the control is marked as invalid
+      expect(passwordControl?.hasError('minlength')).toBeTrue();
+    }
+  });
 });
