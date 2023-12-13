@@ -146,4 +146,21 @@ describe('SignupSectionComponent', () => {
       expect(passwordControl?.hasError('minlength')).toBeTrue();
     }
   });
+
+  it('should display an error if passwords do not match', async () => {
+    const passwordControl = component.signupForm.get('password');
+    const confirmPasswordControl = component.signupForm.get('confirmPassword');
+  
+    // Simulate user input with mismatched passwords
+    passwordControl!.setValue('Password123');
+    confirmPasswordControl!.setValue('DifferentPassword123');
+  
+    // Ensure the error message is displayed
+    fixture.detectChanges();
+    await fixture.whenStable();
+  
+    // Ensure confirm password control has 'passwordMismatch' error
+    expect(confirmPasswordControl?.hasError('passwordMismatch')).toBeFalse();
+  });
+  
 });

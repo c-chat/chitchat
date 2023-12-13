@@ -71,7 +71,7 @@ export class SignupSectionComponent {
         return errorMessage;
       }
     }
-    
+
     return '';
   }
   
@@ -108,7 +108,7 @@ export class SignupSectionComponent {
     console.log(this.signupForm);
     const encryptedCredentials = this.encryptionService.encryptCredentials(username, password);
 
-    this.http.post(`${environment.apiUrl}/login`, { credentials: encryptedCredentials }).subscribe(
+    this.http.post(`${environment.apiUrl}/signup`, { credentials: encryptedCredentials }).subscribe(
       (response) => {
         
       },
