@@ -63,16 +63,18 @@ export class SignupSectionComponent {
   getPasswordErrors(): string {
     const passwordControl = this.signupForm.get('password');
     const errors = passwordControl?.errors;
-    let errorMessage = '';
-
+    let errorMessage = 'Password is required and must have at least 8 characters, one capital letter, one small letter, one number, and one "."';
+  
     if (errors) {
-      if (errors['required'] || errors['minlength'] || errors['hasNumber'] || errors['hasCapitalCase'] || errors['hasSmallCase'] || errors['hasSpecialCharacters'] || errors['noWhitespace']) {
-        errorMessage = 'Password is required and must have at least 8 characters, one capital letter, one small letter, one number and one "." ';
+      if (errors['required'] || errors['minlength'] || errors['noWhitespace'] || errors['hasNumber'] ||
+          errors['hasCapitalCase'] || errors['hasSmallCase'] || errors['hasSpecialCharacters']) {
+        return errorMessage;
       }
     }
-
-    return errorMessage.trim();
+    
+    return '';
   }
+  
 
   validatePassword() {
     const passwordControl = this.signupForm.get('password');
