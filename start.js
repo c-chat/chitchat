@@ -36,8 +36,21 @@ async function setupContainers (test) {
     exit(-1)
   })
 
+  if (test) {
+    await new Promise((resolve) => {
+      console.log('building test image...')
+      execSync('docker build -t chitchat_e2e:1.0.0 ./source/cypress', { stdio: 'inherit' })
+      resolve()
+    }).then(() => {
+      console.log('test image was built successfully.')
+    }).catch(() => {
+      console.log('process failed while trying to build image for test.')
+      exit(-1)
+    })
+  }
+
   let retry = false
-  const flag = test ? "-f test-compose.yml" : ""
+  const flag = test ? '-f test-compose.yml' : ''
   await new Promise((resolve) => {
     console.log('starting containers...')
     execSync(`docker-compose up ${flag}`, { stdio: 'inherit' })
@@ -109,7 +122,7 @@ async function main (pat, test) {
 
 const PAT = process.argv[2]
 const mode = process.argv[3]
-const test = mode === "test" ? true : false
+const test = mode === 'test'
 if (!PAT) {
   console.error('personal access token was not provided.')
   exit(-1)
