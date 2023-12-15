@@ -2,7 +2,7 @@ const fs = require('fs')
 const { execSync } = require('child_process')
 const { exit } = require('process')
 
-async function setupContainers () {
+async function setupContainers (test) {
   await new Promise((resolve) => {
     console.log('looking for docker...')
     execSync('docker --version')
@@ -37,9 +37,10 @@ async function setupContainers () {
   })
 
   let retry = false
+  const flag = test ? "-f test-compose.yml --abort-on-container-exit" : ""
   await new Promise((resolve) => {
     console.log('starting containers...')
-    execSync('docker-compose up', { stdio: 'inherit' })
+    execSync(`docker-compose up ${flag}`, { stdio: 'inherit' })
     resolve()
   }).then(() => {
     console.log('server is up and running!')
@@ -50,7 +51,7 @@ async function setupContainers () {
 
   if (retry) {
     await new Promise((resolve) => {
-      execSync('docker compose up', { stdio: 'inherit' })
+      execSync(`docker compose up ${flag}`, { stdio: 'inherit' })
       resolve()
     }).then(() => {
       console.log('server is up and running!')
@@ -98,18 +99,20 @@ async function fetchFileInfo (file, pat) {
     .catch(e => { console.log(e) })
 }
 
-async function main (pat) {
+async function main (pat, test) {
   const FILES = [{ type: 'source', fileName: 'environment.ts' }, { type: 'source', fileName: 'environment.development.ts' }, { type: 'server', fileName: '.server.env' }]
   for (const file of FILES) {
     await fetchFileInfo(file, pat)
   }
-  setupContainers()
+  setupContainers(test)
 }
 
 const PAT = process.argv[2]
+const mode = process.argv[3]
+const test = mode === "test" ? true : false
 if (!PAT) {
   console.error('personal access token was not provided.')
   exit(-1)
 }
 
-main(PAT)
+main(PAT, test)
