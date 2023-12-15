@@ -39,7 +39,7 @@ async function setupContainers (test) {
   if (test) {
     await new Promise((resolve) => {
       console.log('building test image...')
-      execSync('docker build -t chitchat_e2e:1.0.0 -f "./source/dockerfile.e2e"', { stdio: 'inherit' })
+      execSync('docker build -t "chitchat_e2e:1.0.0" -f "./source/dockerfile.e2e"', { stdio: 'inherit' })
       resolve()
     }).then(() => {
       console.log('test image was built successfully.')
