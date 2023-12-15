@@ -37,7 +37,7 @@ async function setupContainers (test) {
   })
 
   let retry = false
-  const flag = test ? "-f test-compose.yml --abort-on-container-exit" : ""
+  const flag = test ? "-f test-compose.yml" : ""
   await new Promise((resolve) => {
     console.log('starting containers...')
     execSync(`docker-compose up ${flag}`, { stdio: 'inherit' })
