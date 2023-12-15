@@ -23,9 +23,6 @@ jobs:
         env:
           S: ${{ secrets.PAT }}
         run: node start.js "$S" &
-
-      - name: add ts
-        run: yarn add typescript
           
       - name: Run E2E Tests
         working-directory: ./source
