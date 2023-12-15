@@ -13,4 +13,5 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+      - name: run tests  
         run: cypress run
