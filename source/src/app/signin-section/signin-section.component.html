@@ -8,9 +8,9 @@
         <label>Password</label>
         <input type="password" name="password" formControlName="password" placeholder="123456">
         <div class="password-error-container">
-            <div *ngIf="signinForm.invalid && (signinForm.dirty || signinForm.touched)">
-                <div class="password-error show" *ngIf="signinForm.hasError('invalidCredentials')">
-                    Username or password incorrect
+            <div *ngIf="signinForm.get('password')?.errors?.['passwordCriteria'] && (signinForm.get('password')?.dirty || signinForm.get('password')?.touched)">
+                <div class="password-error show">
+                    Password should have at least 8 characters, one capital letter, one small letter, one number, and one dot character.
                 </div>
             </div>
         </div>

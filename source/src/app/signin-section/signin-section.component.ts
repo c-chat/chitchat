@@ -17,8 +17,31 @@ export class SigninSectionComponent implements OnInit {
   ngOnInit() {
     this.signinForm = new FormGroup({
       username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+      password: new FormControl('', [Validators.required, Validators.minLength(8), this.passwordValidator])
     })
+  }
+
+  passwordValidator(control: AbstractControl): ValidationErrors | null {
+    const value: string = control.value || '';
+    
+    const hasCapitalLetter = /[A-Z]/.test(value);
+    const hasSmallLetter = /[a-z]/.test(value);
+    const hasNumber = /\d/.test(value);
+    const hasDot = /\./.test(value);
+
+    if (
+      value.length < 8 ||
+      !hasCapitalLetter ||
+      !hasSmallLetter ||
+      !hasNumber ||
+      !hasDot
+    ) {
+      return {
+        passwordCriteria: true
+      };
+    }
+
+    return null;
   }
 
   onSubmit() {
