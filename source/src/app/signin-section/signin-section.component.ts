@@ -13,11 +13,13 @@ import { environment } from 'src/environments/environment.development';
 export class SigninSectionComponent implements OnInit {
   signinForm!: FormGroup;
   showPasswordError = false;
+  showUsernameError = false;
+  submitted = false;
   constructor(private fb: FormBuilder, private http: HttpClient, private encryptionService: EncryptionService) { }
 
   ngOnInit() {
     this.signinForm = new FormGroup({
-      username: new FormControl('', Validators.required),
+      username: new FormControl('', [Validators.required, this.noWhitespaceValidator]),
       password: new FormControl('', [Validators.required, Validators.minLength(8), this.passwordValidator])
     })
   }
@@ -46,16 +48,33 @@ export class SigninSectionComponent implements OnInit {
   }
 
   onPasswordFieldFocus() {
-    // Reset password error and do not show the error on focus
     this.showPasswordError = false;
   }
 
   onPasswordFieldBlur() {
-    // Show password error on blur (when the field loses focus)
     this.showPasswordError = true;
   }
 
+  noWhitespaceValidator(control: AbstractControl): ValidationErrors | null {
+    const value: string = control.value || '';
+    
+    if (/\s/.test(value)) {
+      return { 'noWhitespace': true };
+    }
+
+    return null;
+  }
+
+  onUsernameFieldFocus() {
+    this.showUsernameError = false;
+  }
+
+  onUsernameFieldBlur() {
+    this.showUsernameError = true;
+  }
+
   onSubmit() {
+    this.submitted = true;
     console.log(this.signinForm.value);
     if (this.signinForm.valid) {
         const { username, password } = this.signinForm.value;
