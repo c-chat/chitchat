@@ -6,11 +6,12 @@
         <input type="text" name="username" formControlName="username" placeholder="shahrzad">
         <!-- password -->
         <label>Password</label>
-        <input type="password" name="password" formControlName="password" placeholder="123456">
+        <input type="password" name="password" formControlName="password" placeholder="123456" (focus)="onPasswordFieldFocus()"
+        (blur)="onPasswordFieldBlur()">
         <div class="password-error-container">
-            <div *ngIf="signinForm.get('password')?.errors?.['passwordCriteria'] && (signinForm.get('password')?.dirty || signinForm.get('password')?.touched)">
+            <div *ngIf="showPasswordError && signinForm.get('password')?.errors?.['passwordCriteria']">
                 <div class="password-error show">
-                    Password should have at least 8 characters, one capital letter, one small letter, one number, and one dot character.
+                    Username or Password incorrect.
                 </div>
             </div>
         </div>

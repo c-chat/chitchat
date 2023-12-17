@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment.development';
 })
 export class SigninSectionComponent implements OnInit {
   signinForm!: FormGroup;
+  showPasswordError = false;
   constructor(private fb: FormBuilder, private http: HttpClient, private encryptionService: EncryptionService) { }
 
   ngOnInit() {
@@ -42,6 +43,16 @@ export class SigninSectionComponent implements OnInit {
     }
 
     return null;
+  }
+
+  onPasswordFieldFocus() {
+    // Reset password error and do not show the error on focus
+    this.showPasswordError = false;
+  }
+
+  onPasswordFieldBlur() {
+    // Show password error on blur (when the field loses focus)
+    this.showPasswordError = true;
   }
 
   onSubmit() {
