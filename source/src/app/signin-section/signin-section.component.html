@@ -7,6 +7,13 @@
         <!-- password -->
         <label>Password</label>
         <input type="password" name="password" formControlName="password" placeholder="123456">
+        <div class="password-error-container">
+            <div *ngIf="signinForm.invalid && (signinForm.dirty || signinForm.touched)">
+                <div class="password-error show" *ngIf="signinForm.hasError('invalidCredentials')">
+                    Username or password incorrect
+                </div>
+            </div>
+        </div>
         <button class="sign-btn">Sign in</button>
     </form>
 </div>

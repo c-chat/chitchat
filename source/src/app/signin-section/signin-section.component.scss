@@ -21,6 +21,23 @@ form {
         margin-top: 7px;
     }
 
+    .password-error-container{
+        height: 20px;
+        overflow: hidden;
+        transition: height 0.3s ease;
+
+        .password-error {
+            color: red;
+            height: 20px; 
+            opacity: 0; 
+            transition: opacity 0.3s ease; 
+          }
+          
+        .password-error.show {
+            opacity: 1; 
+          }
+    }
+
     input {
         font-family: Montserrat, sans-serif;
         width: 98%;
