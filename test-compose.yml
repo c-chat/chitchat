@@ -1,0 +1,16 @@
+---
+version: "1"
+services:
+  source:
+    extends:
+      file: docker-compose.yml
+      service: source
+  server:
+    extends:
+      file: docker-compose.yml
+      service: server
+  tests:
+    image: chitchat_e2e:1.0.0 
+    depends_on:
+      - server
+      - source        

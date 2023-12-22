@@ -1,0 +1,25 @@
+---
+name: E2E tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.10.0'
+
+      - name: start app
+        env:
+          S: ${{ secrets.PAT }}
+        run: node start.js "$S" test
