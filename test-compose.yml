@@ -1,5 +1,5 @@
 ---
-version: 1
+version: "1"
 services:
   source:
     extends:
@@ -10,4 +10,7 @@ services:
       file: docker-compose.yml
       service: server
   tests:
-    image: chitchat_e2e:1.0.0         
+    image: chitchat_e2e:1.0.0 
+    depends_on:
+      - server
+      - source        
