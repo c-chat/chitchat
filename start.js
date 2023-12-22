@@ -2,7 +2,7 @@ const fs = require('fs')
 const { execSync } = require('child_process')
 const { exit } = require('process')
 
-async function setupContainers () {
+async function setupContainers (test) {
   await new Promise((resolve) => {
     console.log('looking for docker...')
     execSync('docker --version')
@@ -36,10 +36,27 @@ async function setupContainers () {
     exit(-1)
   })
 
+  if (test) {
+    await new Promise((resolve) => {
+      console.log('building test image...')
+      execSync('docker build -f "./source/dockerfile.e2e" -t "chitchat_e2e:1.0.0" ./source', { stdio: 'inherit' })
+      resolve()
+    }).then(() => {
+      console.log('test image was built successfully.')
+    }).catch(() => {
+      console.log('process failed while trying to build image for test.')
+      exit(-1)
+    })
+  }
+
   let retry = false
+  // const flag = test ? '-f test-compose.yml' : ''
+
   await new Promise((resolve) => {
-    console.log('starting containers...')
-    execSync('docker-compose up', { stdio: 'inherit' })
+    console.log('starting containers')
+
+    const command = test ? 'docker-compose -f test-compose.yml run tests' : 'docker-compose up'
+    execSync(command, { stdio: 'inherit' })
     resolve()
   }).then(() => {
     console.log('server is up and running!')
@@ -50,7 +67,8 @@ async function setupContainers () {
 
   if (retry) {
     await new Promise((resolve) => {
-      execSync('docker compose up', { stdio: 'inherit' })
+      const command = test ? 'docker compose -f test-compose.yml run tests' : 'docker compose up'
+      execSync(command, { stdio: 'inherit' })
       resolve()
     }).then(() => {
       console.log('server is up and running!')
@@ -98,18 +116,20 @@ async function fetchFileInfo (file, pat) {
     .catch(e => { console.log(e) })
 }
 
-async function main (pat) {
+async function main (pat, test) {
   const FILES = [{ type: 'source', fileName: 'environment.ts' }, { type: 'source', fileName: 'environment.development.ts' }, { type: 'server', fileName: '.server.env' }]
   for (const file of FILES) {
     await fetchFileInfo(file, pat)
   }
-  setupContainers()
+  setupContainers(test)
 }
 
 const PAT = process.argv[2]
+const mode = process.argv[3]
+const test = mode === 'test'
 if (!PAT) {
   console.error('personal access token was not provided.')
   exit(-1)
 }
 
-main(PAT)
+main(PAT, test)
