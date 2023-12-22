@@ -50,10 +50,13 @@ async function setupContainers (test) {
   }
 
   let retry = false
-  const flag = test ? '-f test-compose.yml' : ''
+  // const flag = test ? '-f test-compose.yml' : ''
+
   await new Promise((resolve) => {
-    console.log('starting containers...')
-    execSync(`docker-compose up ${flag}`, { stdio: 'inherit' })
+    console.log('starting containers')
+
+    const command = test ? 'docker-compose -f test-compose.yml run tests' : 'docker-compose up'
+    execSync(command, { stdio: 'inherit' })
     resolve()
   }).then(() => {
     console.log('server is up and running!')
@@ -64,7 +67,8 @@ async function setupContainers (test) {
 
   if (retry) {
     await new Promise((resolve) => {
-      execSync(`docker compose up ${flag}`, { stdio: 'inherit' })
+      const command = test ? 'docker compose -f test-compose.yml run tests' : 'docker compose up'
+      execSync(command, { stdio: 'inherit' })
       resolve()
     }).then(() => {
       console.log('server is up and running!')
