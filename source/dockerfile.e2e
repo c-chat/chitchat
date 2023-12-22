@@ -1,6 +1,7 @@
 FROM cypress/base:18.15.0
 WORKDIR /e2e_test
 COPY package.json ./
+COPY tsconfig.json ./
 COPY cypress.config.ts ./
 COPY ./cypress ./cypress/
 RUN yarn
