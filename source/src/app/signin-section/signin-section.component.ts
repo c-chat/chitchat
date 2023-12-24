@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ValidatorFn } from '@angular/forms';
 import { FormBuilder, FormGroup, AbstractControl, ValidationErrors, Validators, FormControl, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { EncryptionService } from '../encryption.service';
 import { environment } from 'src/environments/environment.development';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin-section',
@@ -15,7 +15,7 @@ export class SigninSectionComponent implements OnInit {
   showPasswordError = false;
   showUsernameError = false;
   submitted = false;
-  constructor(private fb: FormBuilder, private http: HttpClient, private encryptionService: EncryptionService) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private encryptionService: EncryptionService, private router: Router) { }
 
   ngOnInit() {
     this.signinForm = new FormGroup({
@@ -79,16 +79,22 @@ export class SigninSectionComponent implements OnInit {
     if (this.signinForm.valid) {
         const { username, password } = this.signinForm.value;
         const encryptedCredentials = this.encryptionService.encryptCredentials(username, password);
-        this.http.post(environment.apiUrl + '/signin', { credentials: encryptedCredentials }).subscribe(
-            data => {
-                console.log(data);
-                this.signinForm.reset();
-            },
-            error => {
-                console.log(error);
-                this.signinForm.setErrors({ 'invalidCredentials': true });
-            }
-        );
+        // ----- comment this part for now as we don't have server
+        // this.http.post(environment.apiUrl + '/signin', { credentials: encryptedCredentials }).subscribe(
+        //     data => {
+        //         console.log(data);
+        //         console.log('Successful sign-in!', data);
+        //         this.router.navigate([environment.apiUrl + '/chats']);
+        //         this.signinForm.reset();
+        //     },
+        //     error => {
+        //         console.log("error happened")
+        //         console.log(error);
+        //         this.signinForm.setErrors({ 'invalidCredentials': true });
+        //     }
+        // );
+        this.router.navigate(['/chats']);
+        this.signinForm.reset();
     }
 }
 

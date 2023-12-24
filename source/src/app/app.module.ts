@@ -11,6 +11,7 @@ import { SignupSectionComponent } from './signup-section/signup-section.componen
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { SigninPageComponent } from './signin-page/signin-page.component';
 import { SigninSectionComponent } from './signin-section/signin-section.component';
+import { ChatsPageComponent } from './chats-page/chats-page.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { SigninSectionComponent } from './signin-section/signin-section.componen
     SignupPageComponent,
     SigninPageComponent,
     SigninSectionComponent,
+    ChatsPageComponent,
   ],
   imports: [
     BrowserModule,
