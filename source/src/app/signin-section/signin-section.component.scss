@@ -48,21 +48,27 @@ form {
         margin-bottom: 7px;
     }
 
-    .sign-btn {
-        font-family: Montserrat, sans-serif;
-        font-weight: bold;
-        font-size: 15px;
-        width: 105px;
-        height: 30px;
-        background-color: #B2CCFF;
-        color: #f5f5f5;
-        border-radius: 5px;
-        border: none;
-        cursor: pointer;
-        margin-top: 87px;
-        margin-left: 250px;
-        float: right;
+    .btn-container{
+        display: flex;
+        justify-content: flex-end;
+
+        .sign-btn {
+            font-family: Montserrat, sans-serif;
+            font-weight: bold;
+            font-size: 15px;
+            width: 105px;
+            height: 30px;
+            background-color: #B2CCFF;
+            color: #f5f5f5;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            margin-top: 87px;
+            margin-left: 250px;
+            float: right;
+        }
     }
+    
 }
 
 @media screen and (width >= 744px) {
