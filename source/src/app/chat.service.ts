@@ -51,6 +51,28 @@ export class ChatService {
           "content": "Love you",
           "sign": "../assets/signs/error 1.png"
         },
+        {
+          "id": 4,
+          "user": {
+            "image": {
+              "png": "../assets/profiles/amin.jpg"
+            },
+            "username": "Mehri"
+          },
+          "content": "photo",
+          "sign": "../assets/signs/error 1.png"
+        },
+        {
+          "id": 5,
+          "user": {
+            "image": {
+              "png": "../assets/profiles/raei.jpg"
+            },
+            "username": "Mehri"
+          },
+          "content": "Ok",
+          "sign": "../assets/signs/error 1.png"
+        },
       ]
     })
    }
