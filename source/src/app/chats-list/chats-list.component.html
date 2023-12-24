@@ -1,0 +1,19 @@
+<div *ngFor="let chat of chats" class="chats">
+    <div class="chat">
+        <div class="image">
+            <img [src]="chat.user.image.png">
+        </div>
+
+        <div class="right">
+            <div class="message-content">
+                <div class="username">{{chat.user.username}}</div>
+                <div class="message">{{chat.content}}</div>
+            </div>
+
+            <div class="message-status">
+                <img [src]="chat.sign">
+            </div>
+        </div>
+    </div>
+</div>
+

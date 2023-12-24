@@ -13,6 +13,7 @@ import { SigninPageComponent } from './signin-page/signin-page.component';
 import { SigninSectionComponent } from './signin-section/signin-section.component';
 import { ChatsPageComponent } from './chats-page/chats-page.component';
 import { ChatsHeaderComponent } from './chats-header/chats-header.component';
+import { ChatsListComponent } from './chats-list/chats-list.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ChatsHeaderComponent } from './chats-header/chats-header.component';
     SigninSectionComponent,
     ChatsPageComponent,
     ChatsHeaderComponent,
+    ChatsListComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,32 @@
+.chats {
+    .chat {
+        display: flex;
+
+        .image {
+            img {
+                width: 45px;
+                height: 45px;
+                border-radius: 20px;
+            }
+        }
+
+        .right{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 8px;
+
+            .message-content{
+                .username{
+                    font-size: 12px;
+                    font-weight: 400;
+                }
+
+                .message{
+                    font-size: 10px;
+                    font-weight: 300;
+                }
+            }
+        }
+    }
+}
