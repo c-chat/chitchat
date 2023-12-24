@@ -32,76 +32,82 @@ form {
     }
 
     .error-container {
-        height: 20px; 
-        overflow: hidden; 
-        transition: height 0.3s ease; 
+        height: 20px;
+        overflow: hidden;
+        transition: height 0.3s ease;
 
         .error {
             color: red;
-            height: 20px; 
-            opacity: 0; 
-            transition: opacity 0.3s ease; 
-          }
+            height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
         .error.show {
-            opacity: 1; 
-          }
-      }
+            opacity: 1;
+        }
+    }
 
-      .password-error-container {
-        height: 40px; 
-        overflow: hidden; 
-        transition: height 0.3s ease; 
+    .password-error-container {
+        height: 40px;
+        overflow: hidden;
+        transition: height 0.3s ease;
 
         .password-error {
             color: red;
-            height: 20px; 
-            opacity: 0; 
-            transition: opacity 0.3s ease; 
-          }
-          
-        .password-error.show {
-            opacity: 1; 
-          }
-      }
+            height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-      .confirm-password-error-container {
-        height: 20px; 
-        overflow: hidden; 
-        transition: height 0.3s ease; 
+        .password-error.show {
+            opacity: 1;
+        }
+    }
+
+    .confirm-password-error-container {
+        height: 20px;
+        overflow: hidden;
+        transition: height 0.3s ease;
 
         .confirm-password-error {
             color: red;
-            height: 20px; 
-            opacity: 0; 
-            transition: opacity 0.3s ease; 
-          }
-          
-          .confirm-password-error.show {
-            opacity: 1; 
-          }
-      }
-      
-    .sign-btn {
-        font-family: Montserrat, sans-serif;
-        font-weight: bold;
-        font-size: 15px;
-        width: 105px;
-        height: 30px;
-        background-color: #B2CCFF;
-        color: #f5f5f5;
-        border-radius: 5px;
-        border: none;
-        cursor: pointer;
-        margin-top: 87px;
-        margin-left: 250px;
-        float: right;
+            height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .confirm-password-error.show {
+            opacity: 1;
+        }
     }
 
-    .sign-btn:disabled {
-        cursor: not-allowed;
-        background-color: #c9d9f8;
+    .btn-container {
+        display: flex;
+        justify-content: flex-end;
+
+        .sign-btn {
+            font-family: Montserrat, sans-serif;
+            font-weight: bold;
+            font-size: 15px;
+            width: 105px;
+            height: 30px;
+            background-color: #B2CCFF;
+            color: #f5f5f5;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            margin-top: 87px;
+            margin-left: 250px;
+            float: right;
+        }
+
+        .sign-btn:disabled {
+            cursor: not-allowed;
+            background-color: #c9d9f8;
+        }
     }
+
 }
 
 @media screen and (width >=744px) {
