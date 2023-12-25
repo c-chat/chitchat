@@ -27,10 +27,16 @@
         }
     }
 
+    .search-box{
+        width: 100%;
+        border: none;
+    }
+
     .search {
         display: flex;
         align-items: flex-start;
         cursor: pointer;
         height: 29px;
+        outline: none;
     }
 }

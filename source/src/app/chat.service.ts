@@ -9,6 +9,9 @@ export class ChatService {
   public chatsSubject = new BehaviorSubject<any>(null);
   chats$: Observable<any> = this.chatsSubject.asObservable();
 
+  // search 
+  searchText: string = '';
+
   constructor() {
     this.chatsSubject.next({
       "currentUser": {
@@ -76,4 +79,27 @@ export class ChatService {
       ]
     })
    }
+
+   resetFilters() {
+    this.searchText = '';
+    // Trigger an update to show all chats
+    this.chatsSubject.next(this.chatsSubject.value);
+  }
+
+   // Function to filter chats based on search text
+   filterChats(text: string) {
+    this.searchText = text.toLowerCase();
+    const allChats = this.chatsSubject.value;
+    if (!text.trim()) {
+      // Show all chats if search text is empty
+      this.chatsSubject.next(allChats);
+    } else {
+      // Filter chats by username
+      const filteredChats = allChats?.chats.filter((chat: any) =>
+        chat.user.username.toLowerCase().includes(this.searchText)
+      );
+      // Update chatsSubject with filtered chats
+      this.chatsSubject.next({ ...allChats, chats: filteredChats });
+    }
+  }
 }
