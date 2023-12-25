@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ChatService } from '../chat.service';
 
 @Component({
@@ -9,22 +9,23 @@ import { ChatService } from '../chat.service';
 export class ChatsHeaderComponent {
 
 
-  @Input() placeholder: string = "Search"
-  isSearchVisible: boolean = false;
+  @Input() placeholder: string = "Search";
+  @Output() searchChanged = new EventEmitter<string>();
   searchText: string = '';
+  isSearchVisible: boolean = false;
   constructor(public chatService: ChatService){}
 
   toggleSearch() {
     this.isSearchVisible = !this.isSearchVisible;
     if (!this.isSearchVisible) {
-      // Clear search text and reset filters when hiding search
+      // Clear search text
       this.searchText = '';
       this.chatService.resetFilters();
     }
   }
 
   filterChats() {
-    this.chatService.filterChats(this.searchText);
+    this.searchChanged.emit(this.searchText);
   }
 
 }

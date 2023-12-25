@@ -18,4 +18,8 @@ export class ChatsListComponent implements OnInit {
     });
   }
 
+  onSearchChanged(searchText: string) {
+    this.chatService.filterChats(searchText);
+  }
+
 }

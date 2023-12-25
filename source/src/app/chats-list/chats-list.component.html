@@ -1,3 +1,4 @@
+<app-chats-header [placeholder]="'Search...'" (searchChanged)="onSearchChanged($event)"></app-chats-header>
 <div class="wrapper">
     <div class="chats">
         <div *ngFor="let chat of chats">
