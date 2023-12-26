@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chats-list',
@@ -10,7 +11,7 @@ export class ChatsListComponent implements OnInit {
 
   chats: any;
 
-  constructor(public chatService: ChatService) {}
+  constructor(public chatService: ChatService, private router: Router) {}
 
   ngOnInit(): void {
     this.chatService.chats$.subscribe((data) => {
@@ -20,6 +21,10 @@ export class ChatsListComponent implements OnInit {
 
   onSearchChanged(searchText: string) {
     this.chatService.filterChats(searchText);
+  }
+
+  navigateToChatDetail(chatId: number) {
+    this.router.navigate(['/chats', chatId]);
   }
 
 }

@@ -15,6 +15,7 @@ import { SigninSectionComponent } from './signin-section/signin-section.componen
 import { ChatsPageComponent } from './chats-page/chats-page.component';
 import { ChatsHeaderComponent } from './chats-header/chats-header.component';
 import { ChatsListComponent } from './chats-list/chats-list.component';
+import { ChatDetailComponent } from './chat-detail/chat-detail.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ChatsListComponent } from './chats-list/chats-list.component';
     ChatsPageComponent,
     ChatsHeaderComponent,
     ChatsListComponent,
+    ChatDetailComponent,
   ],
   imports: [
     BrowserModule,

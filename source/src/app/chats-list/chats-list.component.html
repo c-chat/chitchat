@@ -1,7 +1,7 @@
 <app-chats-header [placeholder]="'Search...'" (searchChanged)="onSearchChanged($event)"></app-chats-header>
 <div class="wrapper">
     <div class="chats">
-        <div *ngFor="let chat of chats">
+        <div *ngFor="let chat of chats" (click)="navigateToChatDetail(chat.id)">
             <div class="chat">
                 <div class="image">
                     <img [src]="chat.user.image.png">
