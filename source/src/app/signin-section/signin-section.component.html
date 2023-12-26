@@ -1,0 +1,23 @@
+<div class="container">
+    <p>Sign in to your account</p>
+    <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+        <!-- username -->
+        <label>Username</label>
+        <input type="text" name="username" formControlName="username" placeholder="shahrzad" (focus)="onUsernameFieldFocus()"
+        (blur)="onUsernameFieldBlur()">
+        <!-- password -->
+        <label>Password</label>
+        <input type="password" name="password" formControlName="password" placeholder="123456" (focus)="onPasswordFieldFocus()"
+        (blur)="onPasswordFieldBlur()">
+        <div class="password-error-container">
+            <div *ngIf="(showPasswordError && signinForm.get('password')?.errors?.['passwordCriteria']) || (submitted && signinForm.get('username')?.errors?.['noWhitespace'])">
+                <div class="password-error show">
+                    Username or Password incorrect.
+                </div>
+            </div>
+        </div>
+        <div class="btn-container">
+            <button class="sign-btn">Sign in</button>
+        </div>
+    </form>
+</div>

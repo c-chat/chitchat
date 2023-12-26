@@ -1,0 +1,26 @@
+<app-chats-header [placeholder]="'Search...'" (searchChanged)="onSearchChanged($event)"></app-chats-header>
+<div class="wrapper">
+    <div class="chats">
+        <div *ngFor="let chat of chats" (click)="navigateToChatDetail(chat.id)">
+            <div class="chat">
+                <div class="image">
+                    <img [src]="chat.user.image.png">
+                </div>
+
+                <div class="right">
+                    <div class="message-content">
+                        <div class="username">{{chat.user.username}}</div>
+                        <div class="message">{{chat.content}}</div>
+                    </div>
+
+                    <div class="message-status">
+                        <img [src]="chat.sign">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="message-container">
+        <p>Select a chat and start messaging</p>
+    </div>
+</div>

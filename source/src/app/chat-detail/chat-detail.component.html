@@ -1,0 +1,12 @@
+<div class="chat-messages">
+    <div *ngIf="chatData.messages && chatData.messages.length > 0; else noMessages">
+        <div *ngFor="let message of chatData.messages">
+            <div class="message">
+                <p>{{ message.content }}</p>
+            </div>
+        </div>
+    </div>
+    <ng-template #noMessages>
+        <p>No messages found</p>
+    </ng-template>
+</div>

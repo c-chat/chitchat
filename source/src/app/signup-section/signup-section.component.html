@@ -1,0 +1,48 @@
+<div class="container">
+    <p>Sign up for a new account</p>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit(signupForm.value.username, signupForm.value.password)">
+        <!-- username -->
+        <label>Username</label>
+        <input type="text" name="username" formControlName="username" placeholder="shahrzad" (blur)="validateUsername()"
+            (focus)="usernameBlurred = false">
+        <div class="error-container">
+            <div
+                *ngIf="usernameBlurred && signupForm.get('username')!.invalid && (signupForm.get('username')!.dirty || signupForm.get('username')!.touched || usernameBlurred)">
+                <div class="error show" *ngIf="signupForm.get('username')!.errors?.['required']">Username is required.
+                </div>
+                <div class="error show" *ngIf="signupForm.get('username')!.errors?.['noWhitespace']">Username cannot
+                    contain whitespace.</div>
+                <div class="error show" *ngIf="false">This username is already taken</div>
+            </div>
+        </div>
+        <!-- password -->
+        <label>Password</label>
+        <input type="password" name="password" formControlName="password" placeholder="123456"
+            (input)="validatePassword()" (focus)="passwordBlurred = false"
+            (blur)="passwordBlurred = true; validatePassword()">
+        <div class="password-error-container">
+            <div *ngIf="signupForm.get('password')!.invalid && signupForm.get('password')!.dirty && passwordBlurred">
+                <div class="password-error show" *ngIf="signupForm.get('password')!.errors">
+                    {{ getPasswordErrors() }}
+                </div>
+            </div>
+        </div>
+        <!-- repeat password -->
+        <label>Repeat password</label>
+        <input type="password" name="confirmPassword" formControlName="confirmPassword">
+        <div class="confirm-password-error-container">
+            <div
+                *ngIf="signupForm.get('confirmPassword')!.invalid && (signupForm.get('confirmPassword')!.dirty || signupForm.get('confirmPassword')!.touched)">
+                <div class="confirm-password-error show" *ngIf="signupForm.get('confirmPassword')!.errors">
+                    <div *ngIf="signupForm.get('confirmPassword')!.errors?.['required']">Please confirm your password.
+                    </div>
+                    <div *ngIf="signupForm.get('confirmPassword')!.errors?.['passwordMismatch']">Passwords do not match.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-container">
+            <button [disabled]="!signupForm.valid || !checkPasswordsMatch()" class="sign-btn">Sign up</button>
+        </div>
+    </form>
+</div>
