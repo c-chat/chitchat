@@ -5,4 +5,4 @@ COPY package.json ./
 COPY yarn.lock ./
 RUN yarn
 COPY . .
-CMD ["npm", "run", "test"]
+CMD ["npm", "run", "test", "--", "--watch=false"]
