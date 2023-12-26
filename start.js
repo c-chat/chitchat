@@ -55,25 +55,39 @@ async function setupContainers (test) {
   await new Promise((resolve) => {
     console.log('starting containers')
 
-    const command = test ? 'docker-compose -f test-compose.yml run tests' : 'docker-compose up'
-    execSync(command, { stdio: 'inherit' })
+    if(test){
+      const e2e = 'docker-compose -f test-compose.yml run e2e_tests'
+      execSync(e2e, { stdio: 'inherit' })
+      const sourceUnitTests = 'docker-compose -f test-compose.yml run source_unit_tests'
+      execSync(sourceUnitTests, { stdio: 'inherit' })
+    }else {
+      const command = 'docker-compose up'
+      execSync(command, { stdio: 'inherit' })
+    }
     resolve()
   }).then(() => {
-    console.log('server is up and running!')
+    console.log(test ? 'tests finished successfully.' : 'server is up and running!')
   }).catch(() => {
-    console.log('docker-compose failed. retrying with docker compose...')
+    console.log('there was a problem ', test ? "running tests." : "starting compose service. Retrying with docker compose")
     retry = true
   })
 
   if (retry) {
     await new Promise((resolve) => {
-      const command = test ? 'docker compose -f test-compose.yml run tests' : 'docker compose up'
-      execSync(command, { stdio: 'inherit' })
+      if(test){
+        const e2e = 'docker compose -f test-compose.yml run e2e_tests'
+        execSync(e2e, { stdio: 'inherit' })
+        const sourceUnitTests = 'docker compose -f test-compose.yml run source_unit_tests'
+        execSync(sourceUnitTests, { stdio: 'inherit' })
+      }else {
+        const command = 'docker compose up'
+        execSync(command, { stdio: 'inherit' })
+      }
       resolve()
     }).then(() => {
-      console.log('server is up and running!')
+      console.log(test ? 'tests finished successfully.' : 'server is up and running!')
     }).catch(() => {
-      console.log('seems like there is a problem with your docker compose package. process failed.')
+      console.log('there was a problem ', test ? "running tests." : "starting compose service.")
       exit(-1)
     })
   }
