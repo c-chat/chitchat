@@ -17,7 +17,7 @@ export class ChatService {
     this.originalChats = {
       "currentUser": {
         "image": {
-          "png": "../assets/profiles/Shahrzad Javadi 1 (2).JPG"
+          "png": "../assets/profiles/profile.JPG"
         },
         "username": "Shahrzad"
       },
@@ -26,7 +26,7 @@ export class ChatService {
           "id": 1,
           "user": {
             "image": {
-              "png": "../assets/profiles/Shahrzad Javadi 1 (2).JPG"
+              "png": "../assets/profiles/profile.JPG"
             },
             "username": "Shahrzad"
           },
@@ -45,7 +45,7 @@ export class ChatService {
           "id": 2,
           "user": {
             "image": {
-              "png": "../assets/profiles/ali.jpg"
+              "png": "../assets/profiles/profile.JPG"
             },
             "username": "Ali"
           },
@@ -61,7 +61,7 @@ export class ChatService {
           "id": 3,
           "user": {
             "image": {
-              "png": "../assets/profiles/mehri.jpg"
+              "png": "../assets/profiles/profile.JPG"
             },
             "username": "Mehri"
           },
@@ -77,7 +77,7 @@ export class ChatService {
           "id": 4,
           "user": {
             "image": {
-              "png": "../assets/profiles/amin.jpg"
+              "png": "../assets/profiles/profile.JPG"
             },
             "username": "Mehri"
           },
@@ -96,7 +96,7 @@ export class ChatService {
           "id": 5,
           "user": {
             "image": {
-              "png": "../assets/profiles/raei.jpg"
+              "png": "../assets/profiles/profile.JPG"
             },
             "username": "Mehri"
           },
