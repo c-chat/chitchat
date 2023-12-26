@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChatsPageComponent } from './chats-page.component';
+import { ChatsListComponent } from '../chats-list/chats-list.component';
+import { ChatsHeaderComponent } from '../chats-header/chats-header.component';
 
 describe('ChatsPageComponent', () => {
   let component: ChatsPageComponent;
@@ -8,7 +10,7 @@ describe('ChatsPageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ChatsPageComponent]
+      declarations: [ChatsPageComponent, ChatsListComponent, ChatsHeaderComponent],
     });
     fixture = TestBed.createComponent(ChatsPageComponent);
     component = fixture.componentInstance;
