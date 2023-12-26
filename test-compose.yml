@@ -9,8 +9,10 @@ services:
     extends:
       file: docker-compose.yml
       service: server
-  tests:
-    image: chitchat_e2e:1.0.0 
+  e2e_tests:
+    image: chitchat_e2e:1.0.0
     depends_on:
       - server
-      - source        
+      - source
+  source_unit_tests:
+    image: chitchat_source_unit_tests:1.0.0
