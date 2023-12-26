@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ChatService } from '../chat.service';
 
 @Component({
   selector: 'app-chat-detail',
@@ -8,13 +9,32 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ChatDetailComponent implements OnInit{
 
-  constructor (private route: ActivatedRoute) {}
+  chatId!: number;
+  chatData: any = { user: {}, messages: [] };
+
+  constructor (private route: ActivatedRoute, private chatService: ChatService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const chatId = +params['id']; 
-      // to do: Use this chatId to fetch the specific chat data from your service or data source
+      const chatId = +params['id'];
+      if (!isNaN(chatId)) { 
+        this.fetchChatData(chatId);
+      } else {
+        console.error('Invalid chat ID');
+      }
     });
+  }
+
+  fetchChatData(chatId: number): void {
+    this.chatService.getChatById(chatId).subscribe(
+      (data: any) => {
+        this.chatData = data;
+      },
+      (error: any) => {
+        console.error(error);
+        this.chatData = { user: {}, messages: [] }; 
+      }
+    );
   }
 
 }

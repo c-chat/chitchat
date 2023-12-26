@@ -31,7 +31,15 @@ export class ChatService {
             "username": "Shahrzad"
           },
           "content": "Hey Max! wanna hang out tonight?",
-          "sign": "../assets/signs/Ellipse 3.png"
+          "sign": "../assets/signs/Ellipse 3.png",
+          "messages": [
+            { "id": 1,
+              "content": "Sure! What time?" 
+            },
+            { "id": 2, 
+              "content": "How about 7 PM?" 
+            }
+          ]
         },
         {
           "id": 2,
@@ -42,7 +50,12 @@ export class ChatService {
             "username": "Ali"
           },
           "content": "LGTM",
-          "sign": "../assets/signs/tick 2.png"
+          "sign": "../assets/signs/tick 2.png",
+          "messages": [
+            { "id": 1,
+              "content": "Great! Let's do it." 
+            },
+          ]
         },
         {
           "id": 3,
@@ -53,7 +66,12 @@ export class ChatService {
             "username": "Mehri"
           },
           "content": "Love you",
-          "sign": "../assets/signs/error 1.png"
+          "sign": "../assets/signs/error 1.png",
+          "messages": [
+            { "id": 1, 
+              "content": "Great! Let's do it." 
+            },
+          ]
         },
         {
           "id": 4,
@@ -64,7 +82,15 @@ export class ChatService {
             "username": "Mehri"
           },
           "content": "photo",
-          "sign": "../assets/signs/error 1.png"
+          "sign": "../assets/signs/error 1.png",
+          "messages": [
+            { "id": 1,
+              "content": "Sure! What time?" 
+            },
+            { "id": 2, 
+              "content": "How about 7 PM?" 
+            }
+          ]
         },
         {
           "id": 5,
@@ -75,7 +101,15 @@ export class ChatService {
             "username": "Mehri"
           },
           "content": "Ok",
-          "sign": "../assets/signs/error 1.png"
+          "sign": "../assets/signs/error 1.png",
+          "messages": [
+            { "id": 1,
+              "content": "See you." 
+            },
+            { "id": 2, 
+              "content": "I'll be there." 
+            }
+          ]
         },
       ]
     };
@@ -100,5 +134,17 @@ export class ChatService {
       // Update chatsSubject with filtered chats
       this.chatsSubject.next({ ...allChats, chats: filteredChats });
     }
+  }
+
+  getChatById(chatId: number): Observable<any> {
+    return new Observable((observer) => {
+      const chat = this.originalChats.chats.find((c: any) => c.id === chatId);
+      if (chat) {
+        observer.next(chat);
+      } else {
+        observer.error('Chat not found');
+      }
+      observer.complete();
+    });
   }
 }
