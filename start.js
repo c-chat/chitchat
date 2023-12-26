@@ -40,11 +40,12 @@ async function setupContainers (test) {
     await new Promise((resolve) => {
       console.log('building test image...')
       execSync('docker build -f "./source/dockerfile.e2e" -t "chitchat_e2e:1.0.0" ./source', { stdio: 'inherit' })
+      execSync('docker build -f "./source/dockerfile.ut" -t "chitchat_source_unit_tests:1.0.0" ./source', { stdio: 'inherit' })
       resolve()
     }).then(() => {
-      console.log('test image was built successfully.')
+      console.log('test images were built successfully.')
     }).catch(() => {
-      console.log('process failed while trying to build image for test.')
+      console.log('process failed while trying to build images for tests.')
       exit(-1)
     })
   }
