@@ -12,8 +12,8 @@ export class ChatDetailComponent implements OnInit{
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const chatId = +params['id']; // Convert string parameter to number
-      // Use this chatId to fetch the specific chat data from your service or data source
+      const chatId = +params['id']; 
+      // to do: Use this chatId to fetch the specific chat data from your service or data source
     });
   }
 
