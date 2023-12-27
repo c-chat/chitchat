@@ -1,8 +1,10 @@
 from django.urls import path
 
-from User_test.views import user_test, id_user_test
+from User_test.views import register, search_user, Login, change_info
 
 urlpatterns = [
-    path('', user_test),
-    path('<int:user_id>/', id_user_test)
+    path('register/', register),
+    path('search/', search_user),
+    path('login/', Login),
+    path('Change_info/', change_info)
 ]

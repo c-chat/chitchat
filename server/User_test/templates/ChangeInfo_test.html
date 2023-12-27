@@ -1,0 +1,16 @@
+{#{% load static %}#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="POST" class="">{% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="Search btn btn-default">Change!</button>
+</form>
+
+</body>
+</html>
