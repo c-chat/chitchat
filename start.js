@@ -2,7 +2,7 @@ const fs = require('fs')
 const { execSync } = require('child_process')
 const { exit } = require('process')
 
-async function setupContainers () {
+async function setupContainers (test) {
   await new Promise((resolve) => {
     console.log('looking for docker...')
     execSync('docker --version')
@@ -36,26 +36,59 @@ async function setupContainers () {
     exit(-1)
   })
 
+  if (test) {
+    await new Promise((resolve) => {
+      console.log('building test image...')
+      execSync('docker build -f "./source/dockerfile.e2e" -t "chitchat_e2e:1.0.0" ./source', { stdio: 'inherit' })
+      execSync('docker build -f "./source/dockerfile.ut" -t "chitchat_source_unit_tests:1.0.0" ./source', { stdio: 'inherit' })
+      resolve()
+    }).then(() => {
+      console.log('test images were built successfully.')
+    }).catch(() => {
+      console.log('process failed while trying to build images for tests.')
+      exit(-1)
+    })
+  }
+
   let retry = false
+  // const flag = test ? '-f test-compose.yml' : ''
+
   await new Promise((resolve) => {
-    console.log('starting containers...')
-    execSync('docker-compose up', { stdio: 'inherit' })
+    console.log('starting containers')
+
+    if(test){
+      const e2e = 'docker-compose -f test-compose.yml run e2e_tests'
+      execSync(e2e, { stdio: 'inherit' })
+      const sourceUnitTests = 'docker-compose -f test-compose.yml run source_unit_tests'
+      execSync(sourceUnitTests, { stdio: 'inherit' })
+    }else {
+      const command = 'docker-compose up'
+      execSync(command, { stdio: 'inherit' })
+    }
     resolve()
   }).then(() => {
-    console.log('server is up and running!')
+    console.log(test ? 'tests finished successfully.' : 'server is up and running!')
   }).catch(() => {
-    console.log('docker-compose failed. retrying with docker compose...')
+    console.log('there was a problem ', test ? "running tests." : "starting compose service. Retrying with docker compose")
     retry = true
   })
 
   if (retry) {
     await new Promise((resolve) => {
-      execSync('docker compose up', { stdio: 'inherit' })
+      if(test){
+        const e2e = 'docker compose -f test-compose.yml run e2e_tests'
+        execSync(e2e, { stdio: 'inherit' })
+        const sourceUnitTests = 'docker compose -f test-compose.yml run source_unit_tests'
+        execSync(sourceUnitTests, { stdio: 'inherit' })
+      }else {
+        const command = 'docker compose up'
+        execSync(command, { stdio: 'inherit' })
+      }
       resolve()
     }).then(() => {
-      console.log('server is up and running!')
+      console.log(test ? 'tests finished successfully.' : 'server is up and running!')
     }).catch(() => {
-      console.log('seems like there is a problem with your docker compose package. process failed.')
+      console.log('there was a problem ', test ? "running tests." : "starting compose service.")
       exit(-1)
     })
   }
@@ -63,10 +96,12 @@ async function setupContainers () {
 
 function writeFile (content, file) {
   if (file.type === 'source') {
+    const prefix = process.platform === 'win32' ? 'powershell.exe ' : ''
     try {
       execSync('cd ./source/src/environments')
     } catch (error) {
-      execSync('mkdir ./source/src/environments')
+      const mkdir = prefix + 'mkdir ./source/src/environments'
+      execSync(mkdir)
     }
   }
 
@@ -96,18 +131,20 @@ async function fetchFileInfo (file, pat) {
     .catch(e => { console.log(e) })
 }
 
-async function main (pat) {
+async function main (pat, test) {
   const FILES = [{ type: 'source', fileName: 'environment.ts' }, { type: 'source', fileName: 'environment.development.ts' }, { type: 'server', fileName: '.server.env' }]
   for (const file of FILES) {
     await fetchFileInfo(file, pat)
   }
-  setupContainers()
+  setupContainers(test)
 }
 
 const PAT = process.argv[2]
+const mode = process.argv[3]
+const test = mode === 'test'
 if (!PAT) {
   console.error('personal access token was not provided.')
   exit(-1)
 }
 
-main(PAT)
+main(PAT, test)
