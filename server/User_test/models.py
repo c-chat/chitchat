@@ -1,10 +1,12 @@
+import uuid
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
 # Create your models here.
 class ChitChatUser(models.Model):
-    User_id = models.AutoField(primary_key=True)
+    User_id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4)
     User_username = models.CharField(max_length=20, null=False, unique=True, default="")
     User_password = models.CharField(max_length=10, null=False, default="")
     User_fullname = models.CharField(max_length=20, unique=False)
