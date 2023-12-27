@@ -1,0 +1,163 @@
+p::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='59' height='3' viewBox='0 0 59 3' fill='none'%3E%3Cline y1='1.5' x2='59' y2='1.5' stroke='%23B2CCFF' stroke-width='3'/%3E%3C/svg%3E");
+    display: block;
+}
+
+p {
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: medium;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        font-family: Montserrat, sans-serif;
+        font-weight: light;
+        font-size: 12px;
+        margin-bottom: 7px;
+        margin-top: 7px;
+    }
+
+    input {
+        font-family: Montserrat, sans-serif;
+        width: 98%;
+        height: 31px;
+        border: 1px solid #B2CCFF;
+        border-radius: 5px;
+        margin-top: 7px;
+        margin-bottom: 7px;
+    }
+
+    .error-container {
+        height: 20px;
+        overflow: hidden;
+        transition: height 0.3s ease;
+
+        .error {
+            color: red;
+            height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .error.show {
+            opacity: 1;
+        }
+    }
+
+    .password-error-container {
+        height: 40px;
+        overflow: hidden;
+        transition: height 0.3s ease;
+
+        .password-error {
+            color: red;
+            height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .password-error.show {
+            opacity: 1;
+        }
+    }
+
+    .confirm-password-error-container {
+        height: 20px;
+        overflow: hidden;
+        transition: height 0.3s ease;
+
+        .confirm-password-error {
+            color: red;
+            height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .confirm-password-error.show {
+            opacity: 1;
+        }
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: flex-end;
+
+        .sign-btn {
+            font-family: Montserrat, sans-serif;
+            font-weight: bold;
+            font-size: 15px;
+            width: 105px;
+            height: 30px;
+            background-color: #B2CCFF;
+            color: #f5f5f5;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            margin-top: 87px;
+            margin-left: 250px;
+            float: right;
+        }
+
+        .sign-btn:disabled {
+            cursor: not-allowed;
+            background-color: #c9d9f8;
+        }
+    }
+
+}
+
+@media screen and (width >=744px) {
+    p {
+        font-weight: 500;
+        font-size: 32px;
+    }
+
+    form {
+        label {
+            font-weight: 300;
+            font-size: 24px;
+        }
+
+        .sign-btn {
+            width: 200px;
+            height: 60px;
+            margin-top: 110px;
+            margin-left: 518px;
+            font-size: 30px;
+            font-weight: 700;
+        }
+    }
+
+}
+
+@media screen and (width >=1280px) {
+    .container {
+        width: 700px;
+        margin: auto;
+
+        p {
+            font-weight: 500;
+            font-size: 32px;
+        }
+
+        form {
+            label {
+                font-weight: 300;
+                font-size: 24px;
+            }
+
+            .sign-btn {
+                width: 200px;
+                height: 60px;
+                margin-left: 500px;
+            }
+        }
+
+    }
+
+
+}
