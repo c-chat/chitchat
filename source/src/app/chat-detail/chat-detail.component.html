@@ -1,8 +1,17 @@
 <div class="chat-messages">
     <div *ngIf="chatData.messages && chatData.messages.length > 0; else noMessages">
-        <div *ngFor="let message of chatData.messages">
-            <div class="message">
-                <p>{{ message.content }}</p>
+        <div class="user-info">
+            <img src="../../assets/signs/back 1.png" class="back-sign">
+            <img [src]="chatData.user.image.png" class="profile-photo">
+            <div class="username">
+                {{chatData.user.username}}
+            </div>
+        </div>
+        <div class="messages">
+            <div *ngFor="let message of chatData.messages">
+                <div class="message">
+                    <p>{{ message.content }}</p>
+                </div>
             </div>
         </div>
     </div>
