@@ -38,7 +38,6 @@ export class ChatDetailComponent implements OnInit{
   }
 
   goBack(): void {
-    // Navigate back to the chat list page
     this.router.navigate(['/chats']);
   }
 
