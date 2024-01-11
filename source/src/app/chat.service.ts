@@ -28,15 +28,14 @@ export class ChatService {
             "image": {
               "png": "../assets/profiles/profile.JPG"
             },
-            "username": "Shahrzad"
+            "username": "Bardia"
           },
-          "content": "Hey Max! wanna hang out tonight?",
           "sign": "../assets/signs/Ellipse 3.png",
           "messages": [
             { "id": 1,
               "content": "Sure! What time?" 
             },
-            { "id": 2, 
+            { "id": 1, 
               "content": "How about 7 PM?" 
             }
           ]
@@ -49,7 +48,6 @@ export class ChatService {
             },
             "username": "Ali"
           },
-          "content": "LGTM",
           "sign": "../assets/signs/tick 2.png",
           "messages": [
             { "id": 1,
@@ -65,7 +63,6 @@ export class ChatService {
             },
             "username": "Mehri"
           },
-          "content": "Love you",
           "sign": "../assets/signs/error 1.png",
           "messages": [
             { "id": 1, 
@@ -81,7 +78,6 @@ export class ChatService {
             },
             "username": "Mehri"
           },
-          "content": "photo",
           "sign": "../assets/signs/error 1.png",
           "messages": [
             { "id": 1,
@@ -100,7 +96,6 @@ export class ChatService {
             },
             "username": "Mehri"
           },
-          "content": "Ok",
           "sign": "../assets/signs/error 1.png",
           "messages": [
             { "id": 1,
