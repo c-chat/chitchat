@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChatService } from '../chat.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class ChatDetailComponent implements OnInit{
   chatId!: number;
   chatData: any = { user: {}, messages: [] };
 
-  constructor (private route: ActivatedRoute, private chatService: ChatService) {}
+  constructor (private route: ActivatedRoute, private router: Router, private chatService: ChatService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -35,6 +35,11 @@ export class ChatDetailComponent implements OnInit{
         this.chatData = { user: {}, messages: [] }; 
       }
     );
+  }
+
+  goBack(): void {
+    // Navigate back to the chat list page
+    this.router.navigate(['/chats']);
   }
 
 }
