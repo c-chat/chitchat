@@ -51,6 +51,24 @@
                     padding: 5px;
                     margin: 5px;
                 }
+
+                .sender {
+                    font-size: 12px;
+                    color: #888;
+                    margin-left: 5px;
+                }
+            }
+
+            .current-user {
+                text-align: right;
+                margin-left: auto;
+                border-radius: 0 10px 0 10px;
+            }
+
+            .other-user {
+                text-align: left;
+                margin-right: auto;
+                border-radius: 0 10px;
             }
         }
     }

@@ -33,9 +33,12 @@ export class ChatService {
           "sign": "../assets/signs/Ellipse 3.png",
           "messages": [
             { "id": 1,
+              "content": "Hey! Wanna hang out?" 
+            },
+            { "id": 2,
               "content": "Sure! What time?" 
             },
-            { "id": 1, 
+            { "id": 2, 
               "content": "How about 7 PM?" 
             }
           ]
@@ -53,6 +56,9 @@ export class ChatService {
             { "id": 1,
               "content": "Great! Let's do it." 
             },
+            { "id": 2,
+              "content": "Sure! What time?" 
+            },
           ]
         },
         {
@@ -67,6 +73,9 @@ export class ChatService {
           "messages": [
             { "id": 1, 
               "content": "Great! Let's do it." 
+            },
+            { "id": 2,
+              "content": "Not in the mood :(" 
             },
           ]
         },
@@ -85,7 +94,10 @@ export class ChatService {
             },
             { "id": 2, 
               "content": "How about 7 PM?" 
-            }
+            },
+            { "id": 2,
+              "content": "Shut up" 
+            },
           ]
         },
         {
@@ -103,6 +115,9 @@ export class ChatService {
             },
             { "id": 2, 
               "content": "I'll be there." 
+            },
+            { "id": 1, 
+              "content": "I'll call you." 
             }
           ]
         },
