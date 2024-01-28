@@ -15,7 +15,15 @@ export class ChatsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.chatService.chats$.subscribe((data) => {
-      this.chats = data.chats;
+      this.chats = data.chats.map((chat: any) => {
+        const lastMessage = chat.messages.length > 0 ? chat.messages[chat.messages.length - 1].content : '';
+        return {
+          id: chat.id,
+          user: chat.user,
+          sign: chat.sign,
+          lastMessage: lastMessage
+        };
+      });
     });
   }
 

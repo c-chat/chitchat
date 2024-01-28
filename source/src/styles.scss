@@ -5,6 +5,13 @@
     src: url('/source/src/assets/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
 }
 
+html{
+    height: 100%;
+    margin: 0;
+}
+
 body {
     font-family: Montserrat, sans-serif;
+    height: 100%;
+    margin: 0;
 }

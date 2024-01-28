@@ -28,16 +28,21 @@ export class ChatService {
             "image": {
               "png": "../assets/profiles/profile.JPG"
             },
-            "username": "Shahrzad"
+            "username": "Bardia"
           },
-          "content": "Hey Max! wanna hang out tonight?",
           "sign": "../assets/signs/Ellipse 3.png",
           "messages": [
             { "id": 1,
-              "content": "Sure! What time?" 
+              "content": "Hey! Wanna hang out?",
+              "contentType": "text"
+            },
+            { "id": 2,
+              "content": "Sure! What time?",
+              "contentType": "text"
             },
             { "id": 2, 
-              "content": "How about 7 PM?" 
+              "content": "How about 7 PM?",
+              "contentType": "text"
             }
           ]
         },
@@ -49,11 +54,15 @@ export class ChatService {
             },
             "username": "Ali"
           },
-          "content": "LGTM",
           "sign": "../assets/signs/tick 2.png",
           "messages": [
             { "id": 1,
-              "content": "Great! Let's do it." 
+              "content": "Great! Let's do it.",
+              "contentType": "text" 
+            },
+            { "id": 2,
+              "content": "Sure! What time?",
+              "contentType": "text" 
             },
           ]
         },
@@ -65,11 +74,15 @@ export class ChatService {
             },
             "username": "Mehri"
           },
-          "content": "Love you",
           "sign": "../assets/signs/error 1.png",
           "messages": [
             { "id": 1, 
-              "content": "Great! Let's do it." 
+              "content": "Great! Let's do it.",
+              "contentType": "text"
+            },
+            { "id": 2,
+              "content": "Not in the mood :(",
+              "contentType": "text"
             },
           ]
         },
@@ -81,15 +94,20 @@ export class ChatService {
             },
             "username": "Mehri"
           },
-          "content": "photo",
           "sign": "../assets/signs/error 1.png",
           "messages": [
             { "id": 1,
-              "content": "Sure! What time?" 
+              "content": "Sure! What time?",
+              "contentType": "text"
             },
             { "id": 2, 
-              "content": "How about 7 PM?" 
-            }
+              "content": "How about 7 PM?",
+              "contentType": "text"
+            },
+            { "id": 2,
+              "content": "Shut up",
+              "contentType": "text"
+            },
           ]
         },
         {
@@ -100,14 +118,19 @@ export class ChatService {
             },
             "username": "Mehri"
           },
-          "content": "Ok",
           "sign": "../assets/signs/error 1.png",
           "messages": [
             { "id": 1,
-              "content": "See you." 
+              "content": "See you.",
+              "contentType": "text"
             },
             { "id": 2, 
-              "content": "I'll be there." 
+              "content": "I'll be there.",
+              "contentType": "text"
+            },
+            { "id": 1, 
+              "content": "I'll call you.",
+              "contentType": "text"
             }
           ]
         },
@@ -147,4 +170,11 @@ export class ChatService {
       observer.complete();
     });
   }
+}
+
+export interface Message {
+  id: number;
+  content: string;
+  contentType: 'text' | 'image';
+  imagePath?: string;
 }

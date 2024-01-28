@@ -1,12 +1,27 @@
-<div class="chat-messages">
-    <div *ngIf="chatData.messages && chatData.messages.length > 0; else noMessages">
-        <div *ngFor="let message of chatData.messages">
-            <div class="message">
-                <p>{{ message.content }}</p>
+<div class="container">
+    <div class="chat-messages">
+        <div *ngIf="chatData.messages && chatData.messages.length > 0; else noMessages">
+          <div class="user-info">
+            <img src="../../assets/signs/back 1.png" class="back-sign" (click)="goBack()">
+            <img [src]="chatData.user.image.png" class="profile-photo">
+            <div class="username">
+              {{chatData.user.username}}
             </div>
+          </div>
+          <div class="messages">
+            <div *ngFor="let message of chatData.messages">
+              <div class="message" [ngClass]="{'current-user': message.id === 1, 'other-user': message.id === 2}">
+                <span *ngIf="message.contentType === 'text'" class="content">{{ message.content }}</span>
+                <img *ngIf="message.contentType === 'image'" src="../../assets/signs/photo_to_send.png" class="content-image" alt="Image">
+              </div>
+            </div>
+          </div>
+          
         </div>
-    </div>
-    <ng-template #noMessages>
-        <p>No messages found</p>
-    </ng-template>
+        <ng-template #noMessages>
+          <p>No messages found</p>
+        </ng-template>
+      </div>
+      
+    <app-send-message (messageSent)="onMessageSent($event)"></app-send-message>
 </div>
