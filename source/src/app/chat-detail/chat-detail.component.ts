@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChatService } from '../chat.service';
+import { Message } from '../chat.service';
 
 @Component({
   selector: 'app-chat-detail',
@@ -37,17 +38,21 @@ export class ChatDetailComponent implements OnInit {
     );
   }
 
-  onMessageSent(message: string) {
-    const senderId = 1; 
-    const receiverId = 2; 
-
-    const newMessage = {
+  onMessageSent(message: { content: string; contentType: 'text' | 'image' }) {
+    const senderId = 1;
+    const receiverId = 2;
+  
+    const newMessage: Message = {
       id: senderId,
-      content: message
+      content: message.content,
+      contentType: message.contentType,
+      imagePath: message.contentType === 'image' ? 'path_to_image' : undefined,
     };
-
+  
     this.chatData.messages.push(newMessage);
   }
+  
+  
 
   goBack(): void {
     this.router.navigate(['/chats']);

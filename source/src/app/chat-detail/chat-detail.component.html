@@ -11,10 +11,12 @@
           <div class="messages">
             <div *ngFor="let message of chatData.messages">
               <div class="message" [ngClass]="{'current-user': message.id === 1, 'other-user': message.id === 2}">
-                <span class="content">{{ message.content }}</span>
+                <span *ngIf="message.contentType === 'text'" class="content">{{ message.content }}</span>
+                <img *ngIf="message.contentType === 'image'" src="../../assets/signs/photo_to_send.png" class="content-image" alt="Image">
               </div>
             </div>
           </div>
+          
         </div>
         <ng-template #noMessages>
           <p>No messages found</p>

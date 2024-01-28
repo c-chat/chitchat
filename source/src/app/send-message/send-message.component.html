@@ -1,5 +1,5 @@
 <div class="container">
-    <input type="text" class="type" placeholder="What did you have in mind?" [ngModel]="message" (ngModelChange)="message = $event" type="text" class="type">
-    <img src="../../assets/signs/attachment 1.png" alt="" srcset="" class="attachment">
+    <input type="text" class="type" placeholder="What did you have in mind?" [(ngModel)]="message.content">
+    <input type="file" (change)="onFileSelected($event)" accept="image/*">
     <img src="../../assets/signs/send.png" alt="" srcset="" class="send" (click)="sendMessage()">
 </div>

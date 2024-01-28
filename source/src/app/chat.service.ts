@@ -33,13 +33,16 @@ export class ChatService {
           "sign": "../assets/signs/Ellipse 3.png",
           "messages": [
             { "id": 1,
-              "content": "Hey! Wanna hang out?" 
+              "content": "Hey! Wanna hang out?",
+              "contentType": "text"
             },
             { "id": 2,
-              "content": "Sure! What time?" 
+              "content": "Sure! What time?",
+              "contentType": "text"
             },
             { "id": 2, 
-              "content": "How about 7 PM?" 
+              "content": "How about 7 PM?",
+              "contentType": "text"
             }
           ]
         },
@@ -54,10 +57,12 @@ export class ChatService {
           "sign": "../assets/signs/tick 2.png",
           "messages": [
             { "id": 1,
-              "content": "Great! Let's do it." 
+              "content": "Great! Let's do it.",
+              "contentType": "text" 
             },
             { "id": 2,
-              "content": "Sure! What time?" 
+              "content": "Sure! What time?",
+              "contentType": "text" 
             },
           ]
         },
@@ -72,10 +77,12 @@ export class ChatService {
           "sign": "../assets/signs/error 1.png",
           "messages": [
             { "id": 1, 
-              "content": "Great! Let's do it." 
+              "content": "Great! Let's do it.",
+              "contentType": "text"
             },
             { "id": 2,
-              "content": "Not in the mood :(" 
+              "content": "Not in the mood :(",
+              "contentType": "text"
             },
           ]
         },
@@ -90,13 +97,16 @@ export class ChatService {
           "sign": "../assets/signs/error 1.png",
           "messages": [
             { "id": 1,
-              "content": "Sure! What time?" 
+              "content": "Sure! What time?",
+              "contentType": "text"
             },
             { "id": 2, 
-              "content": "How about 7 PM?" 
+              "content": "How about 7 PM?",
+              "contentType": "text"
             },
             { "id": 2,
-              "content": "Shut up" 
+              "content": "Shut up",
+              "contentType": "text"
             },
           ]
         },
@@ -111,13 +121,16 @@ export class ChatService {
           "sign": "../assets/signs/error 1.png",
           "messages": [
             { "id": 1,
-              "content": "See you." 
+              "content": "See you.",
+              "contentType": "text"
             },
             { "id": 2, 
-              "content": "I'll be there." 
+              "content": "I'll be there.",
+              "contentType": "text"
             },
             { "id": 1, 
-              "content": "I'll call you." 
+              "content": "I'll call you.",
+              "contentType": "text"
             }
           ]
         },
@@ -157,4 +170,11 @@ export class ChatService {
       observer.complete();
     });
   }
+}
+
+export interface Message {
+  id: number;
+  content: string;
+  contentType: 'text' | 'image';
+  imagePath?: string;
 }
